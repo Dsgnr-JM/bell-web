@@ -1,0 +1,55 @@
+---
+import Layout from "./Layout.astro";
+import Tag from "../components/Tag.astro";
+import Author from "../components/Author.astro"
+import type { FrontMatter } from "../types";
+const { frontmatter } = Astro.props;
+
+type Props = FrontMatter;
+---
+
+<Layout title={frontmatter.title}>
+  <article class="markdown main md:w-[50rem] md:px-0 px-4 w-full flex-col">
+  <h1>{frontmatter.title}</h1>
+  {/**<p>Publicado el: {frontmatter.pubDate.toString().slice(0, 10)}</p>**/}
+  <Author text={frontmatter.author}/>
+  <div class="flex items-center flex-wrap w-72 justify-start gap-1 tags mb-1'">
+    {
+      frontmatter.tags.map((tag) => (
+          <Tag title={tag}/>
+      ))
+    }
+  </div>
+    <slot />
+  </article>
+</Layout>
+
+<style is:global>
+  .markdown p > code{
+    @apply font-normal font-mono not-italic px-1 dark:bg-gray-700 dark:text-white/80 bg-gray-300/70 text-black/80 rounded;
+  }
+  .markdown p > a{
+    @apply dark:hover:text-sky-400 hover:text-blue-500 underline;
+  }
+  .markdown h1{
+    @apply font-extrabold text-3xl dark:text-gray-100 text-gray-900 md:w-[72%] w-[90%];
+  }
+  .markdown h2{
+    @apply [font-size:1.65rem] mt-8 font-extrabold leading-[2.1rem] dark:text-white/90 text-black/90;
+  }
+  .markdown p{
+    @apply text-base dark:text-gray-50/85 text-gray-700/95 md:leading-8 leading-6 my-4;
+  }
+  .markdown blockquote{
+    @apply relative flex my-3 before:content-[''] flex gap-2 before:w-[5px] before:h-auto before:bg-sky-500 after:dark:bg-sky-400 before:rounded-xl before:block  rounded py-2 px-1 bg-gray-200/90 dark:bg-gray-700/90 w-full h-full flex-1 m-0;
+  }
+  .markdown img{
+    @apply w-full object-cover h-auto mb-2 rounded-md max-h-96;
+  }
+  .markdown pre{
+    @apply relative mt-6 mb-12 shadow-2xl shadow-black/20 rounded-md p-2;
+  }
+  .markdown ul > li {
+    @apply text-2xl mt-8 pt-1 font-extrabold dark:text-sky-400 text-blue-500;
+  }
+</style>

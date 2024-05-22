@@ -1,0 +1,33 @@
+---
+import bento from "../data/bento.json";
+
+export type Props = {
+  grid: string;
+  icon: SVGSVGElement;
+  title: string;
+  subtitle: string;
+  color: string;
+  position: string;
+};
+
+const { grid, icon, title, subtitle, color, position } = Astro.props;
+---
+
+<div
+  class={`${grid} relative w-full h-full dark:bg-white/5 bg-gray-100/90 backdrop-blur-xl overflow-hidden rounded-md cursor-pointer hover:-translate-y-1 dark:hover:bg-white/10 transition-transform duration-200 border-b-[0.1rem] dark:border-white/5 border-black/5 p-4`}
+>
+  <div class="h-full w-full flex flex-col justify-center items-center">
+    <div>{icon}</div>
+    <h1 class="font-bold tracking-tighter dark:text-white text-black">
+      {title}
+    </h1>
+    {
+      subtitle && (
+        <p class="dark:text-gray-50/50 text-gray-900/70 md:text-sm text-xs text-center text-pretty">
+          {subtitle}
+        </p>
+      )
+    }
+  </div>
+  <div class={`size-24 absolute ${color} blur-3xl -z-10 ${position}`}></div>
+</div>

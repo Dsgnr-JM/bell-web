@@ -1,0 +1,13 @@
+---
+export type Props = {
+  text: string
+}
+const { text }  = Astro.props
+---
+
+<div class="flex items-center gap-1 dark:text-slate-100/80 text-slate-800/80 md:text-sm text-xs">
+      <figure class="size-6 rounded-full overflow-hidden">
+        <img src="../image.jpg" class="object-cover" alt="Foto de perfil del Desarrollador Web JotaDev - Jhoan Mejia"/>
+      </figure> 
+      <p>Escrito por {text}</p>
+</div>

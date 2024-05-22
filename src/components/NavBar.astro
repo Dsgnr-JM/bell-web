@@ -1,0 +1,37 @@
+---
+import ThemeIcon from './ThemeButton.astro'
+import Logo from './Logo.astro'
+
+---
+
+<nav class='fixed top-0 left-0 w-full h-14 dark:bg-gray-900/50 backdrop-blur bg-slate-100/80 shadow-xl shadow-gray-900/5 border-b-2 border-white/20 z-20'>
+      <div class='main md:w-[50rem] md:px-0 px-6 w-full'>
+        <div class='flex items-center justify-between w-full'>
+          <div class='flex items-center'>
+            <a href="/">
+            <Logo classLogo="h-8 mr-2"/>
+            </a>
+            <span class='dark:text-white/80 text-gray-900/80 font-bold tracking-wider md:block'>
+              Jota Dev
+            </span>
+          </div>
+          <div class='flex text-black/60 dark:text-white/90 items-center text-sm'>
+            {/**Aqui va el search**/}
+            <div class="w-full flex items-center relative">
+              <div class="md:static  md:visible invisible absolute md:bg-transparent md:dark:bg-transparent dark:bg-slate-700 bg-slate-200  rounded md:p-0 p-2 top-[200%] right-0 flex-1 flex md:flex-row flex-col md:items-center items-end transition" >
+                <a href='/blog' class='py-1 px-2 rounded transition-all' aria-label='Ir a la pestaña Articulos'>
+                  Articulos
+                </a>
+                {/**<a href='/challenges' class='py-1 px-2 rounded transition-all' aria-label='Ir a la pestaña Challenges'>
+                                  RetosDev
+                                </a>
+                                <a href='/leaderboard' class='py-1 px-2 rounded transition-all' aria-label='Ir a la pestaña LeaderBoard'>
+                                  LeaderBoard
+                                </a>**/}
+              </div>
+              <ThemeIcon/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>

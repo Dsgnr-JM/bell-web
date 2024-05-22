@@ -1,0 +1,68 @@
+---
+
+import { ViewTransitions } from "astro:transitions"
+import NavBar from '../components/NavBar.astro'
+import "@fontsource-variable/onest"
+import Background from '../components/Background.astro'
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="font-onest root relative w-full min-h-screen text-white dark:bg-slate-800 bg-slate-50 transition-all pt-20">
+    <NavBar/>
+    <section class="w-full h-full flex flex-col z-10 relative">
+      <slot />
+    </section>
+    <Background/>
+  </body>
+</html>
+<style is:global>
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: #fcf8f7;
+    background-size: 224px;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+    width: 50%;
+  }
+  .main {
+  @apply flex h-full mx-auto;
+}
+.active {
+  @apply dark:bg-white/10 bg-gray-800/5;
+}
+</style>

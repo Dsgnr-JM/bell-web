@@ -1,0 +1,45 @@
+[
+  {
+    "grid": "col-span-3 row-span-2",
+    "color": "dark:bg-yellow-500/40 bg-yellow-500/30",
+    "subtitle":
+      "Javascript es el lenguaje de la Web, suele ser llamado el padre de Python y PHP, estas de acuerdo",
+    "position": "top-0",
+    "title": "JS"
+  },
+  {
+    "grid": "col-span-2 row-span-1",
+    "color": "dark:bg-orange-400/60 bg-orange-400/30",
+    "subtitle": "El padre y estructura de la Web",
+    "position": "top-0 right-0",
+    "title": "HTML"
+  },
+  {
+    "grid": "col-span-2 row-span-2",
+    "color": "dark:bg-blue-500/40 bg-blue-500/30",
+    "subtitle": "Ok ya funciona, pero se ve bien!!",
+    "position": "top-0",
+    "title": "CSS"
+  },
+  {
+    "grid": "col-span-1 row-span-2",
+    "color": "dark:bg-purple-300/40 bg-purple-300/30",
+    "subtitle": "Esto si que es SSR",
+    "position": "top-0",
+    "title": "PHP"
+  },
+  {
+    "grid": "col-span-2 row-span-2",
+    "color": "dark:bg-emerald-400/40 bg-emerald-400/30",
+    "position": "bottom-0",
+    "title": "TAILWINDCSS",
+    "subtitle": "El mejor framework de CSS con utility-class"
+  },
+  {
+    "grid": "col-span-2",
+    "color": "dark:bg-cyan-500/40 bg-cyan-500/30",
+    "position": "bottom-0 right-0",
+    "subtitle": "El framework favorito de JS",
+    "title": "REACT"
+  }
+]

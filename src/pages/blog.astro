@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { FrontMatterGlob } from "../types";
+const allPostsMD = await Astro.glob("./posts/*.md");
+const allPosts: FrontMatterGlob[] = allPostsMD.map((post) => ({
+  frontmatter: post.frontmatter,
+  url: post.url,
+}));
+const skillColor = "navy";
+---
+
+<Layout title="Articulos del Blog">
+  <a href="/">Inicio</a>
+  <a href="/about/">Sobre mi</a>
+  <a href="/blog/">Blog</a>
+
+  <h1 class="font-extrabold">Mi blog de aprendizaje sobre Astro</h1>
+  <p>Aquí es donde publicaré acerca de mi viaje aprendiendo Astro.</p>
+  <ul class="flex gap-2">
+    {
+      allPosts.map((post) => (
+        <a
+          href={post.url}
+          class="p-3 rounded border-2 border-gray-400/50 hover:border-sky-500 hover:text-sky-500 text-black"
+        >
+          <h3 class="font-semibold">{post.frontmatter.title}</h3>
+          <p>{post.frontmatter.pubDate}</p>
+        </a>
+      ))
+    }
+  </ul>
+</Layout>
+<script is:inline define:vars={{ allPosts }}>
+  console.log(allPosts)
+</script>
+
+<style define:vars={{ skillColor }}>
+  h1 {
+    color: purple;
+    font-size: 4rem;
+  }
+  .skill {
+    color: green;
+    color: var(--skillColor);
+    font-weight: bold;
+  }
+</style>
