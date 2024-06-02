@@ -5,7 +5,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily:{
-				onest: ['"Onest Variable"']
+				onest: ['"Onest Variable"','Arial', 'Helvetica', 'sans-serif'],
+				code: ['"ui-monospace"',"Menlo","Monaco",'"Cascadia Mono"','"Segoe UI Mono"','"Roboto Mono"','"Oxygen Mono"','"Ubuntu Monospace"','"Source Code Pro"','"Fira Mono"','"Droid Sans Mono"','"Courier New"',"monospace"]
 			}
 		},
 	},

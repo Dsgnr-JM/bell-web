@@ -3,6 +3,7 @@ title: Mi segunda publicación en el blog
 layout: ../../layouts/MarkdownPostLayout.astro
 author: Alumno de Astro
 description: "Después de aprender un poco de Astro, ¡no podía parar!"
+as: "javascript"
 image:
     url: "https://docs.astro.build/assets/arc.webp"
     alt: "Miniatura de los arcos de Astro."

@@ -1,9 +1,8 @@
 ---
-
-import { ViewTransitions } from "astro:transitions"
-import NavBar from '../components/NavBar.astro'
-import "@fontsource-variable/onest"
-import Background from '../components/Background.astro'
+import { ViewTransitions } from "astro:transitions";
+import NavBar from "../components/NavBar.astro";
+import "@fontsource-variable/onest";
+import Background from "../components/Background.astro";
 
 interface Props {
   title: string;
@@ -22,12 +21,14 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="font-onest root relative w-full min-h-screen text-white dark:bg-slate-800 bg-slate-50 transition-all pt-20">
-    <NavBar/>
+  <body
+    class="font-onest root relative w-full min-h-screen text-white dark:bg-slate-800 bg-slate-50 transition-all pt-24"
+  >
+    <NavBar />
     <section class="w-full h-full flex flex-col z-10 relative">
       <slot />
     </section>
-    <Background/>
+    <Background />
   </body>
 </html>
 <style is:global>
@@ -46,23 +47,37 @@ const { title } = Astro.props;
     font-family: system-ui, sans-serif;
     background: #fcf8f7;
     background-size: 224px;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-    width: 50%;
+    scroll-behavior: smooth;
   }
   .main {
-  @apply flex h-full mx-auto;
-}
-.active {
-  @apply dark:bg-white/10 bg-gray-800/5;
-}
+    @apply flex h-full mx-auto;
+  }
+  body::-webkit-scrollbar {
+    width: 14px;
+    display: block;
+    background: linear-gradient(
+      rgb(241 245 249 / 0.8) calc(3.5rem - 2px),
+      rgb(255 255 255 / 0.2) calc(3.5rem - 2px),
+      rgb(255 255 255 / 0.2) calc(3.6rem - 2px),
+      rgb(248 250 252 / 1) calc(3.6rem - 2px)
+    );
+  }
+  body::-webkit-scrollbar-thumb {
+    border: 5px solid transparent;
+    display: block;
+    background: #787878;
+    border-radius: 10px;
+    background-clip: padding-box;
+  }
+  html.dark body {
+    background-color: rgb(30 41 59 / 1);
+  }
+  html.dark body::-webkit-scrollbar {
+    background: linear-gradient(
+      rgb(17 24 39 / .96) calc(3.5rem - 2px),
+      rgb(40 48 65 /1) calc(3.5rem - 2px),
+      rgb(40 48 65 /1) calc(3.6rem - 2px),
+      rgb(30 41 59 /1) calc(3.6rem - 2px)
+    );
+  }
 </style>

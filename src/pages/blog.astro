@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import type { FrontMatterGlob } from "../types";
+import Css from '../components/icons/Css.astro'
 const allPostsMD = await Astro.glob("./posts/*.md");
 const allPosts: FrontMatterGlob[] = allPostsMD.map((post) => ({
   frontmatter: post.frontmatter,

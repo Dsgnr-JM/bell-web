@@ -3,6 +3,7 @@ title: 'Mi segunda publicación en el post'
 layout: '../../layouts/MarkdownPostLayout.astro'
 author: 'Alumno de Astro'
 description: "No mames wey!"
+as: 'javascript'
 image:
     url: "https://docs.astro.build/assets/arc.webp"
     alt: "Miniatura de los arcos de Astro."

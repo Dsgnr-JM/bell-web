@@ -10,6 +10,7 @@ export type FrontMatter = MarkdownLayoutProps<{
   title: string,
   pubDate: number,
   author: string,
+  as:string
   description: string,
   tags: Tag[]
 }>
@@ -17,6 +18,7 @@ export type FrontMatter = MarkdownLayoutProps<{
 export type FrontMatterGlob = {
   frontmatter: {
     title: string,
+    as: string
     pubDate: number,
     author: string,
     image: {

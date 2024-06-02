@@ -5,9 +5,9 @@ export type Props = {
 const { text }  = Astro.props
 ---
 
-<div class="flex items-center gap-1 dark:text-slate-100/80 text-slate-800/80 md:text-sm text-xs">
+<div class="flex items-center gap-1 dark:text-slate-100/80 text-slate-800/80 md:text-sm text-sm pt-1 pb-3">
       <figure class="size-6 rounded-full overflow-hidden">
         <img src="../image.jpg" class="object-cover" alt="Foto de perfil del Desarrollador Web JotaDev - Jhoan Mejia"/>
       </figure> 
-      <p>Escrito por {text}</p>
+      <span>Escrito por {text}</span>
 </div>

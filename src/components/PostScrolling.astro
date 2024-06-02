@@ -1,0 +1,38 @@
+---
+
+import Chevron from './icons/Chevron.astro'
+
+---
+
+<button class="h-10 w-10 grid place-content-center rounded-full fixed md:bottom-8 bottom-4 md:right-12 right-5 dark:bg-sky-600 bg-sky-600 outline-none transition-all rotate-90 opacity-0 pointer-none" id="scrollingBtn">
+    <Chevron classIcon='size-full'/>
+</button>
+
+<script>
+    const $scrollingBtn = document.getElementById("scrollingBtn")
+
+    $scrollingBtn.addEventListener("click",()=> {
+        scrollTo(0,0)
+    })
+    function callback (entries, observer){
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                $scrollingBtn.classList.remove("active")
+            }else{
+                $scrollingBtn.classList.add("active")
+            }
+        })
+    }
+    let observer = new IntersectionObserver(callback)
+
+    const title = document.querySelector("h1")
+    observer.observe(title)
+</script>
+
+<style>
+    .active{
+        rotate: -180deg;
+        pointer-events: auto;
+        opacity: 1;
+    }
+</style>

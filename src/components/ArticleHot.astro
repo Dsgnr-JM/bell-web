@@ -1,0 +1,77 @@
+---
+import Js from "./icons/Js.astro";
+import Html from "./icons/Html.astro";
+import Python from "./icons/Python.astro";
+import AstroLogo from "./icons/Astro.astro";
+import React from "./icons/React.astro";
+import Tailwind from "./icons/Tailwind.astro";
+import Css from "./icons/Css.astro";
+import Php from "./icons/Php.astro";
+import Dev from "./icons/Dev.astro";
+import Chevron from "./icons/Chevron.astro";
+export type Props = {
+    Icon?: string,
+    title: string,
+    url: string
+}
+const {Icon, title, url} = Astro.props
+
+const iconsTag = [
+  {
+    tag: 'html',
+    icon: Html
+  },
+  {
+    tag: 'css',
+    icon: Css,
+  },
+  {
+    tag: 'javascript',
+    icon: Js,
+  },
+  {
+    tag: 'astro',
+    icon: AstroLogo,
+  },
+  {
+    tag: 'php',
+    icon: Php,
+  },
+  {
+    tag: 'tailwind',
+    icon: Tailwind,
+  },
+  {
+    tag: 'react',
+    icon: React,
+  },
+  {
+    tag: 'node',
+    icon: Js,
+  },
+  {
+    tag: 'dev',
+    icon: Dev,
+  }
+]
+
+function selectIcon (ref) {
+  return iconsTag.find((r) => r.tag === ref)
+}
+
+const Logo = selectIcon(Icon)?.icon
+---
+
+<li class='w-full h-auto'>
+      <a
+        href={`${url}`}
+        aria-label={`Articulo relacionado a ${title}`}
+        class='flex py-3 border-b-2 dark:border-white/5 px-4 bg-gray-200/50 dark:text-white/90 text-slate-800/90 dark:bg-white/5 rounded-md items-center my-3 w-full h-auto cursor-pointer hover:bg-gray-200/80 dark:hover:bg-white/10 transition'
+      >
+        <span class="size-6">{Logo ? <Logo class="size-full"/> : null}</span>
+        <div class='flex items-center justify-between flex-1 ml-4'>
+          <h2 class='font-semibold md:text-base text-sm text-current'>{title}</h2>
+          <Chevron classIcon="size-5 text-black dark:text-white" />
+        </div>
+      </Link>
+    </li>

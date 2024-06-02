@@ -1,0 +1,103 @@
+---
+import SearchIcon from "./icons/Search.astro"
+import Layout from "../layouts/Layout.astro";
+import type { FrontMatterGlob } from "../types";
+const allPostsMD = await Astro.glob("../pages/posts/*.md");
+const allPosts = allPostsMD.map((post) => ({
+  frontmatter: post.frontmatter,
+  url: post.url,
+})) as FrontMatterGlob[];
+---
+
+<label class="flex relative">
+    <input class="dark:bg-gray-100/10 bg-gray-600/10 h-7 py-[.3rem] px-3 rounded-full" id="inputSearch"/>
+    <button class="absolute right-0 top-1/2 size-7 -translate-y-1/2 p-[0.1rem] rounded-full" id="btnSearch">
+        <SearchIcon classIcon="size-5 m-auto dark:text-white text-black/80"/>    
+    </button>
+    <ol id="searchResult">
+    </ol>
+</label>
+
+<script define:vars={{allPosts}}>
+    const $btnSearch = document.querySelector("#btnSearch")
+    const $inputSearch = document.querySelector("#inputSearch")
+    const $searchResult = document.querySelector("#searchResult")
+    $btnSearch.addEventListener("click",()=> {
+        $inputSearch.classList.toggle("active")
+        $btnSearch.classList.toggle("active")
+        if($searchResult.classList.contains("active")) {
+            $inputSearch.value = ""
+            $searchResult.classList.remove("active")
+        }
+    })
+    $inputSearch.addEventListener("input",({target})=>{
+        $searchResult.classList.add("active")
+        $searchResult.innerHTML = ""
+        if(target.value === ""){
+            $searchResult.classList.remove("active")
+        }
+        const allPostsFiltered = allPosts.filter(post => {
+            const reg = new RegExp(target.value.toLowerCase(), 'g')
+            const tagReg = post.frontmatter.tags.some(tag => tag.match(reg))
+            return post.frontmatter.title.toLowerCase().match(reg) || tagReg && post
+        })
+        if(allPostsFiltered.length === 0) {
+            const $p = document.createElement("p")
+            $p.textContent = "No se encontraron resultados 😥"
+            $searchResult.appendChild($p)
+            return
+        } 
+        allPostsFiltered.forEach(post => {
+            const $li = document.createElement("li")
+            const $a = document.createElement("a")
+            $a.href = post.url
+            $a.textContent = post.frontmatter.title
+            $li.appendChild($a)
+            $searchResult.appendChild($li)
+        })
+    })
+</script>
+
+<style>
+    input{
+        outline: none;
+        width: 0;
+        opacity: 0;
+        transition: .14s ease-in all;
+    }
+    input.active{
+        width: 200px;
+        opacity: 1;
+    }
+    ol{
+        width: 140%;
+        pointer-events: none;
+        opacity: 0;
+        position: absolute;
+        top: 120%;
+        left:50%;
+        transform: translateX(-50%);
+        padding: .8rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px 0 rgb(0, 0, 0, .12);
+        @apply dark:bg-slate-700 bg-slate-200;
+        transition: .12s ease-in;
+        z-index: 2;
+    }
+    #btnSearch.active{
+        background: rgba(255,255,255,0.1);
+        box-shadow: -4px 0px 7px rgb(0, 0, 0, .05);
+    }
+    ol.active{
+        pointer-events: auto;
+        opacity: 1;
+    }
+</style>
+<style is:global>
+    #searchResult li{
+        padding: 0.4rem;
+    }
+    #searchResult li a{
+        @apply transition-all hover:dark:text-sky-400 hover:text-blue-500 hover:ml-2;
+    }
+</style>

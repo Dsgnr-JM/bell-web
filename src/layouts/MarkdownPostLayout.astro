@@ -1,55 +1,104 @@
 ---
 import Layout from "./Layout.astro";
 import Tag from "../components/Tag.astro";
-import Author from "../components/Author.astro"
+import Author from "../components/Author.astro";
+import PostScrolling from '../components/PostScrolling.astro'
+import Arrow from '../components/icons/Arrow.astro'
 import type { FrontMatter } from "../types";
 const { frontmatter } = Astro.props;
+import type { FrontMatterGlob } from "../types";
+const allPostsMD = await Astro.glob("../pages/posts/*.md");
+const allPosts = allPostsMD
+  .map((post) => ({
+    frontmatter: post.frontmatter,
+    url: post.url,
+  })) as FrontMatterGlob[];
 
 type Props = FrontMatter;
+
+let PostsAcepted = []
+
+allPosts.forEach((post, i) => {
+  if(post.frontmatter.title === frontmatter.title){
+    PostsAcepted =  [allPosts[i - 1], allPosts[i + 1]]
+  }
+})
+
+const datePubOriginal = new Date(frontmatter.pubDate)
+
+const datePub = datePubOriginal.toLocaleDateString('es-ES',{day: '2-digit',month: 'long', year: 'numeric'})
+
 ---
 
 <Layout title={frontmatter.title}>
-  <article class="markdown main md:w-[50rem] md:px-0 px-4 w-full flex-col">
-  <h1>{frontmatter.title}</h1>
-  {/**<p>Publicado el: {frontmatter.pubDate.toString().slice(0, 10)}</p>**/}
-  <Author text={frontmatter.author}/>
-  <div class="flex items-center flex-wrap w-72 justify-start gap-1 tags mb-1'">
-    {
-      frontmatter.tags.map((tag) => (
-          <Tag title={tag}/>
-      ))
-    }
-  </div>
+  <article class="markdown main md:w-[52rem] md:px-0 px-4 w-full flex-col relative">
+    <h1>{frontmatter.title}</h1>
+    <time style="margin: 0;" itemprop="datePublished" datetime={datePubOriginal.toString()} class="dark:text-white/60 text-black/70 mt-1">{datePub}</time>
+    <Author text={frontmatter.author} />
+    <div
+      class="flex items-center flex-wrap w-72 justify-start gap-1 tags mb-2'"
+    >
+      {frontmatter.tags.map((tag) => <Tag title={tag} />)}
+    </div>
     <slot />
+    <PostScrolling/>
+    <div class="flex md:justify-between md:flex-nowrap flex-wrap my-6 gap-4 w-full md:h-24 h-48 text-white">
+    {PostsAcepted.map((post, i) => 
+      post ? (
+        <a href={post.url} class={`md:h-full h-1/2 md:w-1/2 p-4 w-full flex dark:border-white/20 hover:border-sky-500 dark:hover:border-sky-500 hover:text-sky-500 gap-4 dark:hover:text-sky-500 transition text-ellipsis overflow-hidden items-center justify-center border-2 border-black/20 text-gray-800 dark:text-white rounded-md ${i === 0 ? "flex-row-reverse": ""}`}>
+          <div class={`${i === 0 ? "text-left" : "text-right"} w-full `}>
+            <p>{i === 0 ? "Articulo anterior" : "Siguiente articulo"}</p>
+            <p>
+            {post.frontmatter.title}
+            </p>
+          </div>
+          <Arrow class={`size-8 dark:text-white text-black ${i === 0 ? "-rotate-90": "rotate-90"}`}/>
+        </a>
+      )
+      : <span></span>
+    )}
+    </div>
   </article>
 </Layout>
 
 <style is:global>
-  .markdown p > code{
-    @apply font-normal font-mono not-italic px-1 dark:bg-gray-700 dark:text-white/80 bg-gray-300/70 text-black/80 rounded;
+  .markdown p > code {
+    @apply font-normal font-code not-italic px-1 dark:bg-gray-700 dark:text-white/80 bg-gray-300/70 text-black/80 rounded;
   }
-  .markdown p > a{
-    @apply dark:hover:text-sky-400 hover:text-blue-500 underline;
+  .markdown p > a {
+    text-decoration: underline !important;
+    @apply dark:text-sky-400 text-blue-500 ;
   }
-  .markdown h1{
-    @apply font-extrabold text-3xl dark:text-gray-100 text-gray-900 md:w-[72%] w-[90%];
+  .markdown h1 {
+    @apply font-extrabold text-3xl dark:text-gray-100 text-gray-900 md:w-[65%] w-[90%];
   }
-  .markdown h2{
-    @apply [font-size:1.65rem] mt-8 font-extrabold leading-[2.1rem] dark:text-white/90 text-black/90;
+  .markdown h2 {
+    @apply [font-size:1.65rem] mt-4 font-extrabold leading-[2.1rem] dark:text-white/90 text-black/90;
   }
-  .markdown p{
-    @apply text-base dark:text-gray-50/85 text-gray-700/95 md:leading-8 leading-6 my-4;
+  .markdown p {
+    @apply text-base dark:text-gray-50/85 text-gray-700/95 md:leading-8 leading-7 my-3;
   }
-  .markdown blockquote{
-    @apply relative flex my-3 before:content-[''] flex gap-2 before:w-[5px] before:h-auto before:bg-sky-500 after:dark:bg-sky-400 before:rounded-xl before:block  rounded py-2 px-1 bg-gray-200/90 dark:bg-gray-700/90 w-full h-full flex-1 m-0;
+  .markdown blockquote {
+    @apply relative flex my-2 before:content-[''] flex before:w-[5px] before:h-auto before:bg-sky-500 after:dark:bg-sky-400 before:rounded-xl before:block w-full h-full;
   }
-  .markdown img{
+  .markdown blockquote > p {
+    @apply my-0 bg-gray-200/90 ml-2 dark:bg-gray-700/90 p-2 flex-1 rounded;
+  }
+  .markdown img {
     @apply w-full object-cover h-auto mb-2 rounded-md max-h-96;
   }
-  .markdown pre{
-    @apply relative mt-6 mb-12 shadow-2xl shadow-black/20 rounded-md p-2;
+  .markdown pre {
+    @apply relative my-5 text-base shadow-xl shadow-black/10 rounded-md py-2 px-3;
   }
-  .markdown ul > li {
+  .markdown ol > li {
     @apply text-2xl mt-8 pt-1 font-extrabold dark:text-sky-400 text-blue-500;
+  }
+  .markdown a div > p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    @apply m-0 p-0 h-8;
+  }
+  .markdown a div > p:first-child{
+    @apply dark:text-white/60 text-black/60
   }
 </style>

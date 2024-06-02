@@ -2,10 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import Logo from "../components/Logo.astro";
 import Tag from "../components/Tag.astro";
+import BentoContainer from "../components/BentoContainer.astro";
+import Fire from "../components/icons/Fire.astro";
+import CodeIcon from "../components/icons/Code.astro";
+import LogoGithub from "../components/icons/GithubDontColor.astro";
+import User from "../components/icons/User.astro";
+import LogoDiscord from "../components/icons/DiscordDontColor.astro";
+import LogoWhatsApp from "../components/icons/WhatsAppDontColor.astro";
+import ArticleHot from "../components/ArticleHot.astro";
+import type { FrontMatterGlob } from "../types";
+const allPostsMD = await Astro.glob("./posts/*.md");
+const allPosts = allPostsMD
+  .map((post) => ({
+    frontmatter: post.frontmatter,
+    url: post.url,
+  }))
+  .splice(0, 4) as FrontMatterGlob[];
 ---
 
 <Layout title="Mas que un codigo || JotaDev">
-  <div class="main md:w-[50rem] md:px-0 px-4 w-full flex-col">
+  <div class="main md:w-[52rem] md:px-0 px-4 w-full flex-col">
     <header class="w-full flex flex-col h-[80vh]">
       <div
         class="w-full flex md:justify-between justify-center md:flex-row flex-col h-full items-center -mb-16 md:gap-0 gap-4"
@@ -18,23 +34,21 @@ import Tag from "../components/Tag.astro";
           >
             Jota
             <strong
-              class="font-extrabold bg-gradient-to-r from-blue-600 to-cyan-500 text-transparent bg-clip-text"
+              class="font-extrabold bg-gradient-to-r from-blue-600 to-cyan-500 text-transparent bg-clip-text -mt-20"
             >
               Dev
             </strong>
           </h1>
           <p class="text-base dark:text-gray-100 text-gray-900/90">
-            Bienvenido, soy JotaDev 
+            Bienvenido, soy JotaDev
             <span class="dark:text-blue-400 text-blue-600">
-              desarrollador Web 
+              desarrollador Web
             </span>
-            desde los 
-            <span class="dark:text-indigo-300 text-indigo-600">
-              17 años
-            </span>
-            , es un placer conocerte. 
+            desde los
+            <span class="dark:text-indigo-300 text-indigo-600"> 17 años </span>
+            , es un placer conocerte.
             <span class="md:inline hidden">
-              Este Blog esta pensado para que pueda se usado como una 
+              Este Blog esta pensado para que pueda se usado como una
               <span class="dark:text-sky-300 text-sky-600">
                 guia de referencia rapida.
               </span>
@@ -56,33 +70,108 @@ import Tag from "../components/Tag.astro";
         </div>
       </div>
       <div class="flex justify-center gap-4 w-full pb-12">
-        {
-          /**<a
-                      target='_blank'
-                      href='https://github.com/Dsgnr-JM'
-                      aria-label='Redireccionar a el github de JotaDev'
-                      class='flex gap-2 items-center px-2 py-1.5 dark:bg-gray-100/10 bg-gray-600/10 rounded group hover:bg-blue-500 transition duration-300'
-                    >
-                      <FaGithub class='dark:text-white text-blue-600 size-6 group-hover:text-gray-200 group-hover:dark:text-gray-100' />
-                    </a>
-                    <a
-                      target='_blank'
-                      href='https://www.discord.com/JotaDev'
-                      aria-label='Redireccionar a el grupo de Discord de JotaDev'
-                      class='flex gap-2 items-center px-2 py-1.5 dark:bg-gray-100/10 bg-gray-600/10 rounded group hover:bg-blue-500 transition duration-300'
-                    >
-                      <FaDiscord class='dark:text-white text-blue-600 size-6 group-hover:text-gray-200 group-hover:dark:text-gray-100' />
-                    </a>
-                    <a
-                      target='_blank'
-                      href='https://www.whatsapp.org'
-                      aria-label='Redireccionar a el grupo de WhatsApp "Programadores"'
-                      class='flex gap-2 items-center px-2 py-1.5 dark:bg-gray-100/10 bg-gray-600/10 rounded group hover:bg-blue-500 transition duration-300'
-                    >
-                      <FaWhatsapp class='dark:text-white text-blue-600 size-6 group-hover:text-gray-200 group-hover:dark:text-gray-100' />
-                    </a>**/
-        }
+        <a
+          target="_blank"
+          href="https://github.com/Dsgnr-JM"
+          aria-label="Redireccionar a el github de JotaDev"
+          class="flex gap-2 items-center px-2 py-1.5 dark:bg-gray-100/10 bg-gray-200/60 hover:dark:bg-white/90 rounded group hover:bg-blue-500 transition duration-300"
+        >
+          <LogoGithub
+            classIcon="dark:text-white text-blue-500 size-6 group-hover:text-gray-200 group-hover:dark:text-slate-700"
+          />
+        </a>
+        <a
+          target="_blank"
+          href="https://www.discord.com/JotaDev"
+          aria-label="Redireccionar a el grupo de Discord de JotaDev"
+          class="flex gap-2 items-center px-2 py-1.5 dark:bg-gray-100/10 bg-gray-200/60 hover:dark:bg-white/90 rounded group hover:bg-blue-500 transition duration-300"
+        >
+          <LogoDiscord
+            classIcon="dark:text-white text-blue-500 size-6 group-hover:text-gray-200 group-hover:dark:text-slate-700"
+          />
+        </a>
+        <a
+          target="_blank"
+          href="https://www.whatsapp.org"
+          aria-label='Redireccionar a el grupo de WhatsApp "Programadores"'
+          class="flex gap-2 items-center px-2 py-1.5 dark:bg-gray-100/10 bg-gray-200/60 hover:dark:bg-white/90 rounded group hover:bg-blue-500 transition duration-300"
+        >
+          <LogoWhatsApp
+            classIcon="dark:text-white text-blue-500 size-6 group-hover:text-gray-200 group-hover:dark:text-slate-700"
+          />
+        </a>
       </div>
     </header>
+    <div class="flex flex-col h-auto my-9 w-full">
+      <h1
+        class="md:text-2xl text-xl font-extrabold text-left mb-6 flex dark:text-white text-gray-900/90 items-center"
+      >
+        Ultimos articulos
+        <Fire class="size-8 dark:text-sky-300 text-sky-400 ml-2" />
+      </h1>
+      <ol>
+        {
+          allPosts.map((post) => (
+            <ArticleHot
+              title={post.frontmatter.title}
+              url={post.url}
+              Icon={post.frontmatter.as}
+            />
+          ))
+        }
+      </ol>
+      <a
+        href="/blog"
+        class="dark:text-white/90 w-fit mt-4 text-black/90 mx-auto px-2 py-1 rounded block hover:dark:dark:bg-white/5 hover:bg-gray-200/50 transition duration-300"
+      >
+        Ver todos
+      </a>
+    </div>
+    <div class="flex flex-col items-center md:h-screen h-[80vh] mt-9 w-full">
+      <h1
+        class="md:text-3xl text-2xl font-extrabold dark:text-white text-black capitalize flex gap-1 items-center"
+      >
+        Tecnologias abarcadas
+        <CodeIcon class="ml-2 dark:text-sky-300 text-sky-400 size-8" />
+      </h1>
+      <BentoContainer />
+    </div>
+    <section
+      class="flex my-20 w-full h-auto p-8 rounded dark:bg-slate-900 shadow-black/5 shadow-xl items-center bg-gray-200/30 md:flex-row flex-col gap-2"
+    >
+      <div
+        class="md:w-[60%] w-full [&>p]:md:text-base [&>p]:text-sm [&>p]:text-pretty [&>p]:dark:text-gray-50/70 [&>p]:text-black/70"
+      >
+        <h1
+          class="text-2xl dark:text-white text-black font-extrabold mb-2 flex items-center mb-4"
+        >
+          Sobre mi <User class="ml-2 dark:text-sky-300 text-sky-400 size-8" />
+        </h1>
+        <p>
+          Me llamo Jhoan Mejia 😉, soy Desarrollador Web FullStack y actualmente
+          estudiante de Ingenieria en Informatica.
+        </p>
+        <p>
+          Mi mayor logro fue el Desarrollo de TailkieKids 🎯, una aplicacion
+          diseñada para que niños puedan aprender ingles.
+        </p>
+        <p>
+          He sido lider en diferentes grupos de Desarrolladores Web, manteniendo
+          el orden, planteamiento y direccion de proyectos sobre la ruta
+          estimada, para asi desarrollar aplicaciones web que generen un impacto
+          en la sociedad <span class="text-red-500">❤</span>.
+        </p>
+      </div>
+      <div class="flex-1 flex justify-center">
+        <figure class="w-[11rem] h-[11rem] rounded-full overflow-hidden">
+          <img
+            loading="lazy"
+            src="https://ucarecdn.com/59307f4c-662a-4a44-b820-c51063c2f637/-/preview/208x208/"
+            alt="Foto de perfil de Jhoan Mejia - Jota Dev"
+            class="object-cover w-full h-full"
+          />
+        </figure>
+      </div>
+    </section>
   </div>
 </Layout>
