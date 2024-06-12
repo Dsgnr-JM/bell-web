@@ -12,7 +12,7 @@ const allPosts = allPostsMD
   .map((post) => ({
     frontmatter: post.frontmatter,
     url: post.url,
-  })) as FrontMatterGlob[];
+  })).sort((a,b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate)) as FrontMatterGlob[];
 
 type Props = FrontMatter;
 
@@ -40,6 +40,7 @@ const datePub = datePubOriginal.toLocaleDateString('es-ES',{day: '2-digit',month
     >
       {frontmatter.tags.map((tag) => <Tag title={tag} />)}
     </div>
+    <img src={frontmatter.image.url} alt={frontmatter.image.alt} class="w-full object-cover h-auto mb-2 mt-4 rounded-md max-h-96"/>
     <slot />
     <PostScrolling/>
     <div class="flex md:justify-between md:flex-nowrap flex-wrap my-6 gap-4 w-full md:h-24 h-48 text-white">
@@ -60,9 +61,12 @@ const datePub = datePubOriginal.toLocaleDateString('es-ES',{day: '2-digit',month
     </div>
   </article>
 </Layout>
+<script>
+  console.log("asf")
+</script>
 
 <style is:global>
-  .markdown p > code {
+  .markdown p > code, .markdown strong > code {
     @apply font-normal font-code not-italic px-1 dark:bg-gray-700 dark:text-white/80 bg-gray-300/70 text-black/80 rounded;
   }
   .markdown p > a {

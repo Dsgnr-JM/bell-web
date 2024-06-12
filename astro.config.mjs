@@ -8,7 +8,7 @@ export default defineConfig({
   site: "https://example.com",
   markdown: {
     shikiConfig: {
-      theme: "dracula",
+      theme: "catppuccin-mocha",
       wrap: true,
     },
   },

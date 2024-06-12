@@ -1,0 +1,112 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const isEn = lang == "en"
+
+const itemsLang = {
+    home: !isEn ? "inicio" : "home",
+    installation: !isEn ? "instalacion" : "installation",
+    started: !isEn ? "primeros-pasos" : "getting-started",
+    parameters: !isEn ? "parametros" : "parameters"
+}
+---
+
+<navbar class="fixed top-0 left-0 w-full text-gray-700 z-10 md:text-base text-sm">
+    <ol
+        class="md:w-[60rem] w-full mx-auto flex justify-center md:gap-5 gap-2 items-center h-14 header-h"
+    >
+        <li>
+            <a href={`#${itemsLang.home}`}>{t("nav.home")}</a>
+        </li>
+        <li>
+            <a href={`#${itemsLang.installation}`}
+                >{t("nav.installation")}</a
+            >
+        </li>
+        <li>
+            <a href={`#${itemsLang.started}`}
+                >{t("nav.started")}</a
+            >
+        </li>
+        <li>
+            <a href={`#${itemsLang.parameters}`}
+                >{t("nav.parameters")}</a
+            >
+        </li>
+    </ol>
+</navbar>
+<script define:vars={{itemsLang}}>
+    const $navItems = document.querySelectorAll("navbar > ol > li")
+    const $ = (e) => document.getElementById(e)
+
+    document.addEventListener("DOMContentLoaded",() => {
+
+    const $containersContent = [$(`${itemsLang.home}`), $(`${itemsLang.installation}`), $(`${itemsLang.started}`), $(`${itemsLang.parameters}`)]
+    function callback (entries, observer){
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                $navItems.forEach(e => {
+                    e.classList.remove("active")
+                    if(e.firstElementChild.href.split("#")[1] == entry.target.id){
+                        e.classList.add("active")
+                    }
+                })
+            }
+        })
+    }
+
+
+    let observer = new IntersectionObserver(callback, {rootMargin:"-150px"})
+    $containersContent.forEach($item => {
+        observer.observe($item)
+    })
+    })
+</script>
+<style>
+    navbar {
+        animation: header-h auto linear forwards;
+        animation-timeline: scroll(nearest block);
+    }
+    navbar ol li{
+        position: relative;
+        height: 100%;
+        display: grid;
+        place-content: center;
+        transition:.15s ease-in color
+    }
+    navbar ol li::before{
+        content: "";
+        width: 80%;
+        height: 5px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition:.15s ease-in background;
+        border-radius:5px 5px 0 0;
+    }
+    navbar ol li:hover, navbar ol li.active{
+        @apply text-red-400;
+    }  
+    navbar ol li.active::before{      
+        @apply bg-red-400;
+    }
+    @keyframes header-h {
+        0% {
+            background: transparent;
+        }
+        20% {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(9px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+        100% {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(9px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+    }
+</style>

@@ -1,0 +1,183 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import {Content as Doc} from "../../data/doc.md"
+import  MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import { getLangFromUrl } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url)
+import Logo from "../../components/Logo.astro"
+---
+
+<Layout title="The Lightest Alert Library || Bell.JS">
+  <Navbar/>
+  <div class="mx-auto md:w-[60rem] w-full">
+    <header class="flex md:flex-between flex-center relative">
+    <main class="md:w-3/6 w-full md:text-left text-center md:h-screen h-[40rem] flex flex-col justify-center md:items-start items-center" id="home">
+        <span class="py-1 md:px-3 px-2 text-red-600/80 bg-red-200/50 hover:bg-red-200/60 rounded-full flex items-center gap-2 sm:text-base text-sm w-fit font-bold transition-colors cursor-pointer">
+      Beta V-0.3
+    </span>
+        <h1 class="text-6xl font-extrabold my-4">
+          <span class="font-extrabold bg-gradient-to-r from-red-500/80 to-red-400/90 text-transparent bg-clip-text">
+            Light Alerts
+          </span>
+          <span class="block">Library</span>
+        </h1>
+        <p class="md:text-lg text-base text-gray-900/90 font-medium mb-5 md:px-0 px-10">
+          Library for the generation of fast, lightweight alerts that adapt to your website/app design.
+        </p>
+        <button id="launch-bell" class="py-1 px-3 rounded-full bg-red-500/80 shadow-sm text-white w-fit">Try out</button>
+      </main>
+      <Logo class="size-96 absolute right-12 fill-black/5 fill-black/5 top-1/2 -translate-y-1/2"/>
+    </header>
+      <section class="w-full md:h-[44rem] h-[50rem] grid grid-cols-2 md:mt-6 mt-1 mb-20">
+        <div class="bg-stone-300/40 col-span-3 rounded-xl flex items-center flex-col justify-start p-8 m-3">
+          <h2 class="text-3xl font-bold text-red-400 mb-3">Customized</h2>
+          <p class="font-medium md:text-lg text-base text-stone-700 text-center w-3/4">
+            Many options to set the <span class="bg-red-400 text-white px-1 rounded">alert</span>, from colors to the modes in whitch it is displayed.
+          </p>
+        </div>
+        <div class="bg-gradient-to-br md:col-span-1 col-span-3 from-red-600/70 to-red-500/80 rounded-xl flex items-center flex-col justify-start p-8 m-3 overflow-hidden relative">
+          <h2 class="md:text-3xl text-xl font-bold text-white/90 md:mb-3">Create and launch</h2>
+          <p class="font-medium md:text-base text-xs text-white/70 text-center w-3/4">
+            You just need to create an <span class="bg-white/85 text-red-400 px-1 rounded">instance</span> and launch it.
+          </p>
+          <img src="img.png" alt="Imagen de datos de bell" class="absolute top-1/2 left-1/2 -translate-x-1/2 w-60"/>
+        </div>
+        <div class="bg-stone-300/40 rounded-xl flex items-center flex-col md:col-span-1 col-span-3 justify-start p-8 m-3">
+          <h2 class="text-3xl font-bold text-black mb-3">Soon...</h2>
+          <p class="font-medium text-base text-stone-700 text-center w-3/4">
+            NPM <span class="bg-black/80 text-white/90 px-1 rounded">package</span> is close to arriving.
+          </p>
+        </div>
+      </section>
+    <article class="markdown p-4">
+      <Doc/>
+      </article>
+  </div>
+  <p class="mx-auto text-gray-800 my-4">I've with ❤‍🔥 for JotaDev</p>
+</Layout>
+
+<script>
+  import Bell from "../../lib/bell.js"
+  import "../../lib/bell.css"
+  const type = ["info", "warning", "error", "check", "loading"];
+  const title = ["Soon a stable version","Upps, ocurred an error", "Loading resources", "Everything's fine", "Loading users"];
+  const description = [
+    "We are working for you",
+    "An error occurred, right?",
+    "It's taking longer than necessary",
+    "You will be redirected",
+    "The list will be displayed below"
+  ];
+
+document.querySelector("#launch-bell").addEventListener("click",() => {
+    let num = Math.round(Math.random() * 4)
+    const options = [
+      {
+          title:title[num],
+          description:description[num]
+      },
+      type[num],
+      {
+          animate: true,
+          isColored:Boolean(Math.round(Math.random())),
+          transitionDuration: 300,
+          position: "bottom-right",
+          typeAnimation: "fade-in",
+          timeScreen: 10000,
+          expand: true,
+      }
+  ]
+  const bell = new Bell(...options)
+  bell.launch()
+})
+</script>
+
+<style is:global>
+  #launch-bell{
+    position: relative;
+    overflow: hidden;
+  }
+  #launch-bell::before{
+    content: "";
+    width: 60px;
+    height: 20px;
+    left:-70%;
+    background: rgb(255 255 255 /.3);
+    position: absolute;
+    rotate:50deg;
+    transition:.25s ease-in-out left;
+  }
+  #launch-bell:hover::before{
+    left:90%;
+  }
+  svg{
+    animation: svg auto linear forwards;
+    animation-timeline: scroll(nearest block);
+  }
+  @keyframes svg {
+        0% {
+            fill:rgb(0 0 0 /.05);
+        }
+        20% {
+            @apply fill-red-400
+        }
+        100% {
+            @apply fill-red-400
+        }
+    }
+  .markdown p > code, .markdown strong > code, .markdown table code {
+    @apply font-normal  font-code not-italic px-1 bg-red-300/40 text-red-700/70 rounded;
+  }
+  .markdown p > a {
+    text-decoration: underline !important;
+    @apply text-red-500 ;
+  }
+  .markdown h1, .markdown h2 {
+    @apply font-extrabold text-4xl text-gray-800 w-[90%] mt-10;
+  }
+  .markdown p {
+    @apply text-gray-800/90 md:leading-8 leading-7 my-3;
+  }
+  .markdown blockquote {
+    @apply relative flex my-2 before:content-[''] flex before:w-[5px] before:h-auto before:bg-red-500 before:rounded-xl before:block w-full h-full;
+  }
+  .markdown blockquote > p {
+    @apply my-0 bg-red-200 ml-2 p-2 flex-1 rounded;
+  }
+  .markdown img {
+    @apply w-full object-cover h-auto mb-2 rounded-md max-h-96;
+  }
+  .markdown pre {
+    @apply relative my-7 text-base shadow-xl shadow-black/10 rounded-md p-3;
+  }
+  .markdown ol > li {
+    @apply text-2xl mt-8 pt-1 font-extrabold text-red-500;
+  }
+  .markdown a div > p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    @apply m-0 p-0 h-8;
+  }
+  .markdown a div > p:first-child{
+    @apply dark:text-white/60 text-black/60
+  }
+  .markdown table{
+    @apply w-full md:text-base text-sm;
+  }
+  .markdown table, .markdown tr, .markdown td{
+    @apply border-2 border-red-300 text-gray-900/90;
+  }
+  .markdown td,.markdown th{
+    @apply md:py-2 md:px-3 px-1 text-left;
+  }
+  body{
+    background: url(sa0000.png) repeat , rgb(255, 238, 238);
+    background-size: 300px;
+    background-blend-mode: soft-light;
+}
+.header-a{
+    animation:header-h auto linear forwards;
+  animation-timeline: scroll(nearest block);
+}
+</style>
