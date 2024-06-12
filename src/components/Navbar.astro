@@ -59,7 +59,7 @@ const itemsLang = {
     }
 
 
-    let observer = new IntersectionObserver(callback, {rootMargin:"-150px"})
+    let observer = new IntersectionObserver(callback)
     $containersContent.forEach($item => {
         observer.observe($item)
     })

@@ -1,4 +1,4 @@
-**Bell** es una libreria para crear alertas modernas y elegantes, la misma esta basada en la libreria Sonner pero compatible con entornos que se ejecutan con vanilla JavaScript, this libraria es ligera en cuanto a peso, se ajusta a tu diseño, tiene un buen rendimiento y no necesita de instalar dependencias. Puedes encontrar mas infomacion sobre el proyecto y su desarrollo [aqui](github.com/Dsgnr-JM/bell). 
+**Bell** es una libreria para crear alertas modernas y elegantes, la misma esta basada en la libreria Sonner pero compatible con entornos que se ejecutan con vanilla JavaScript, this libraria es ligera en cuanto a peso, se ajusta a tu diseño, tiene un buen rendimiento y no necesita de instalar dependencias. Puedes encontrar mas infomacion sobre el proyecto y su desarrollo [aqui](https://github.com/Dsgnr-JM/bell). 
 
 ## Instalacion
 

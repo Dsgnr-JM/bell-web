@@ -1,4 +1,4 @@
-Bell is a library to create modern and elegant alerts, it is based on the Sonner library but compatible in environments that run with vanilla JavaScript, this library is lightweight in terms of weight, fits your design, has a good performance and does not need dependecies. You can find more information about the project and its development [here](github.com/Dsgnr-JM/bell)
+Bell is a library to create modern and elegant alerts, it is based on the Sonner library but compatible in environments that run with vanilla JavaScript, this library is lightweight in terms of weight, fits your design, has a good performance and does not need dependecies. You can find more information about the project and its development [here](https://github.com/Dsgnr-JM/bell)
 
 ## Installation
 

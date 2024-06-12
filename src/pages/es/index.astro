@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url)
 import Logo from "../../components/Logo.astro"
 ---
 
-<Layout title="Libreria Ligera de Alertas || Bell.JS">
+<Layout title="Libreria Ligera de Alertas || Bell.JS" description="Bell.js es una libreria para crear alertas adaptables de manera rapida y eficaz, ,mediante Vanilla Javascript. Solo debes crear y lanzar.">
   <Navbar/>
   <div class="mx-auto md:w-[60rem] w-full">
     <header class="flex md:flex-between flex-center relative">
@@ -41,7 +41,7 @@ import Logo from "../../components/Logo.astro"
           <p class="font-medium md:text-base text-xs text-white/70 text-center w-3/4">
             Solo necesitas crear una <span class="bg-white/85 text-red-400 px-1 rounded">instancia</span> de Bell y lanzarla.
           </p>
-          <img src="img.png" alt="Imagen de datos de bell" class="absolute top-1/2 left-1/2 -translate-x-1/2 w-60"/>
+          <img src="img.png" alt="Imagen de datos de bell" class="absolute top-1/2 left-1/2 -translate-x-1/2 w-60" loading="lazy"/>
         </div>
         <div class="bg-stone-300/40 rounded-xl flex items-center flex-col md:col-span-1 col-span-3 justify-start p-8 m-3">
           <h2 class="text-3xl font-bold text-black mb-3">Pronto...</h2>
