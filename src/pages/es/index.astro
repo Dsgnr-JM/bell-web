@@ -25,7 +25,10 @@ import Logo from "../../components/Logo.astro"
         <p class="md:text-lg text-base text-gray-900/90 font-medium mb-5 md:px-0 px-10">
           Libreria para la generacion de alertas rapidas, ligeras y que se adapten al diseño de tu web o app.
         </p>
-        <button id="launch-bell" class="py-1 px-3 rounded-full bg-red-500/80 shadow-sm text-white w-fit">Probar</button>
+        <div class="flex gap-2 flex-start">
+          <a href="/es/playground" class="py-1 px-3 rounded-full border-2 border-red-500/80 shadow-sm text-red-500 w-fit">Probar</a>
+        <button id="launch-bell" class="py-1 px-3 rounded-full bg-red-500/80 shadow-sm text-white w-fit">Lanzar</button>
+        </div>
       </main>
       <Logo class="size-96 absolute right-12 fill-black/5 fill-black/5 top-1/2 -translate-y-1/2"/>
     </header>
@@ -54,24 +57,23 @@ import Logo from "../../components/Logo.astro"
       <Doc/>
       </article>
   </div>
-  <p class="mx-auto text-gray-800 my-4">I've with ❤‍🔥 for JotaDev</p>
+  <p class="mx-auto text-gray-800 my-4">Hecho con ❤‍🔥 por JotaDev</p>
 </Layout>
 
 <script>
-  import Bell from "../../lib/bell.js"
-  import "../../lib/bell.css"
-  const type = ["info", "warning", "error", "check", "loading"];
-  const title = ["Soon a stable version","Upps, ocurred an error", "Loading resources", "Everything's fine", "Loading users"];
+  import Bell from "bell-alert";
+  const type = ["info", "warning", "error", "check"];
+  const title = ["Ya lista","Upps", "Cargando recursos", "Todo va bien", "Cargando usuarios"];
   const description = [
-    "We are working for you",
-    "An error occurred, right?",
-    "It's taking longer than necessary",
-    "You will be redirected",
-    "The list will be displayed below"
+    "Estamos trabajando para ti",
+    "A ocurrido un error?",
+    "Esta tardando mas de lo necesario",
+    "Seras redireccionado",
+    "Los usuarios seran cargados"
   ];
 
 document.querySelector("#launch-bell").addEventListener("click",() => {
-    let num = Math.round(Math.random() * 4)
+    let num = Math.round(Math.random() * 3)
     const options = [
       {
           title:title[num],
@@ -91,6 +93,55 @@ document.querySelector("#launch-bell").addEventListener("click",() => {
   const bell = new Bell(...options)
   bell.launch()
 })
+import copyToClipBoard from "../../lib/copyToClipboard";
+  const $icon = `<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"/></svg>`
+document.addEventListener("DOMContentLoaded", () => {
+    const $allPre = document.querySelectorAll("pre");
+    $allPre.forEach(($pre) => {
+      const $copyComponent = document.createElement("button");
+      $copyComponent.classList.add("copyToClipboard");
+      $copyComponent.innerHTML = $icon;
+      $pre.appendChild($copyComponent);
+      $copyComponent.addEventListener("click", async () => {
+        const res = await copyToClipBoard($pre.textContent);
+        const [_, lang] = window.location.pathname.split("/");
+        if (res === "success") {
+          new Bell(
+            {
+              title: lang == "es" ? "Correcto" : "Success",
+              description:
+                lang == "es"
+                  ? "Texto copiado correctamente"
+                  : "Text copied correctly",
+            },
+            "check",
+            {
+              timeScreen: 5000,
+              animate: true,
+              isColored: true,
+              expand: true,
+            },
+          ).launch();
+        } else {
+          new Bell(
+            {
+              title: "Error",
+              description:
+                lang == "es"
+                  ? "El texto no se pudo copiar"
+                  : "The text could not be copied",
+            },
+            "error",
+            {
+              timeScreen: 5000,
+              animate: true,
+              expand: true,
+            },
+          ).launch();
+        }
+      });
+    });
+  });
 </script>
 
 <style is:global>
@@ -126,6 +177,12 @@ document.querySelector("#launch-bell").addEventListener("click",() => {
             @apply fill-red-400
         }
     }
+    .copyToClipboard {
+    @apply size-8 bg-white/20 absolute rounded top-3 right-3 hover:bg-white/30;
+  }
+  .copyToClipboard svg {
+    @apply size-6 m-auto;
+  }
   .markdown p > code, .markdown strong > code, .markdown table code {
     @apply font-normal  font-code not-italic px-1 bg-red-300/40 text-red-700/70 rounded;
   }

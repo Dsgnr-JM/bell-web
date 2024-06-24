@@ -1,0 +1,146 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout description="Playground para BellJs" title="Playground || BellJs">
+  <section class="mx-auto md:w-[60rem] w-full mt-4">
+    <h1 class="text-6xl font-extrabold my-4">
+      <span
+        class="font-extrabold bg-gradient-to-r from-red-500/80 to-red-400/90 text-transparent bg-clip-text"
+      >
+        Bell
+      </span>
+      <span>Playground</span>
+    </h1>
+    <div>
+    <div class="flex flex-col w-1/2">
+      <div class="flex w-full justify-between gap-4">
+        <div class="w-1/2">
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Titulo:</p>
+            <input
+              type="text"
+              id="title"
+              placeholder="BellJs"
+              class="px-3 py-2 text-gray-400 rounded-sm w-full border-b-2 focus:border-red-500 outline-none focus:text-red-500 focus:placeholder:text-red-500/30 transition"
+            />
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Descripcion:</p>
+            <input
+              type="text"
+              id="description"
+              placeholder="Alerta agnostica al entorno Js"
+              class="px-3 py-2 text-gray-400 rounded-sm w-full border-b-2 focus:border-red-500 outline-none focus:text-red-500 focus:placeholder:text-red-500/30 transition"
+            />
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Tipo:</p>
+            <select
+              class="w-full text-gray-400 py-2 border-b-2 rounded-sm px-3 bg-white outline-none focus:text-red-500 focus:border-red-500"
+              id="type"
+            >
+              <option value="info">Informacion</option>
+              <option value="check">Correcto</option>
+              <option value="warning">Peligro</option>
+              <option value="error">Error</option>
+            </select>
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Animado:</p>
+            <select
+              class="w-full text-gray-400 py-2 border-b-2 rounded-sm px-3 bg-white outline-none focus:text-red-500 focus:border-red-500"
+              id="animate"
+            >
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Coloreado:</p>
+            <select
+              class="w-full text-gray-400 py-2 border-b-2 rounded-sm px-3 bg-white outline-none focus:text-red-500 focus:border-red-500"
+              id="isColored"
+            >
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Duracion de la Transicion:</p>
+            <input
+              type="number"
+              placeholder="300"
+              id="transitionDuration"
+              class="px-3 py-2 text-gray-400 rounded-sm w-full border-b-2 focus:border-red-500 outline-none focus:text-red-500 focus:placeholder:text-red-500/30 transition"
+            />
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Posicion:</p>
+            <select
+              class="w-full text-gray-400 py-2 border-b-2 rounded-sm px-3 bg-white outline-none focus:text-red-500 focus:border-red-500"
+              id="position"
+            >
+              <option value="bottom-right">Abajo a la Derecha</option>
+              <option value="bottom-left">Abajo a la Izquierda</option>
+              <option value="top-right">Arriba a la Derecha</option>
+              <option value="top-left">Arriba a la Izquierda</option>
+            </select>
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Tipo de Animacion:</p>
+            <select
+              class="w-full text-gray-400 py-2 border-b-2 rounded-sm px-3 bg-white outline-none focus:text-red-500 focus:border-red-500"
+              id="typeAnimation"
+            >
+              <option value="ease-in">Entrada suave</option>
+              <option value="ease-in-out">Entrada y salida suave</option>
+              <option value="bound">Bote</option>
+              <option value="bound-2">Bote-Extra</option>
+            </select>
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Tiempo en pantalla:</p>
+            <input
+              type="number"
+              placeholder="3000"
+              id="timeScreen"
+              class="px-3 py-2 text-gray-400 rounded-sm w-full border-b-2 focus:border-red-500 outline-none focus:text-red-500 focus:placeholder:text-red-500/30 transition"
+            />
+          </label>
+          <label class="w-full overflow-h block my-2">
+            <p class="text-gray-800/90">Expandir:</p>
+            <select
+              class="w-full text-gray-400 py-2 border-b-2 rounded-sm px-3 bg-white outline-none focus:text-red-500 focus:border-red-500"
+              id="expand"
+            >
+              <option value="1">Si</option>
+               <option value="0">No</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="w-full flex justify-between gap-4 my-2 text-white/90">
+        <button class="bg-red-400 py-2 px-3 rounded flex-1" id="launch">Lanzar</button>
+        <button class="bg-white text-black/90 py-2 px-3 rounded" id="copy">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-6" xmlns="http://www.w3.org/2000/svg"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"/></svg>
+        </button>
+      </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+<script>
+  import '../../../lib/playground.ts'
+</script>
+<style>
+  body {
+    background:
+      url(sa0000.png) repeat,
+      rgb(255, 238, 238);
+    background-size: 300px;
+    background-blend-mode: soft-light;
+  }
+</style>

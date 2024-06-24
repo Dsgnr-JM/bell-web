@@ -78,14 +78,14 @@ These are some of the parameters that Bell currently accepts with a description 
 
 |Name|Description|Values|
 |---|---|---|
-|`title`:|Indicate the primary text or title|`string`|
-|`description`:|Point out the secondary text or subtitle|`string`|
-|`type`:|Indicates the type of alert | info check error warning |
-|`animate`?:|Indicates whether the animation is activated (false by default)|`boolean`|
-|`isColored`?:|Activa el coloreado de las alertas(por defecto false)|`boolean`|
-|`position`:|Activate the coloring of alerts (false by default)|`bottom-right` `bottom-left` `top-right` `top-left`|
-|`typeAnimation`:|Indicates the way in which the alert is animated|`fade-in`|
-|`timescreen`?:|Differs the time the alert is displayed on the screen|`number`|
-|`expand`?:|Indicates if the alert has the expand animation|`true`|
+|`title`:|Indicates the primary text or title|`string`|
+|`description`:|Indicates the secondary text or subtitle|`string`|
+|`type`:|Indicates the type of alert| info check error warning |
+|`animate`?:|Signals whether the animation is activated (false by default)|`boolean`|
+|`isColored`?:|Activates coloring of alerts (default false)|`boolean`|
+|`position`:|Differs the position in which the alert is displayed|`bottom-right` `bottom-left` `top-right` `top-left`|
+|`typeAnimation`:|indicates the way in which the alert is animated|`fade-in`|
+|`timescreen`?:|Differs the time in which the alert is displayed on the screen|`number`|
+|`expand`?:|Indicates if the alert has the animation of expand|`true`|
 
 Many more configuration options are coming soon, so you can fully customize Bell.
