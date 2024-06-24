@@ -3,7 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 ---
 
 <Layout description="Playground para BellJs" title="Playground || BellJs">
-  <section class="mx-auto md:w-[60rem] w-full mt-4">
+  <section class="mx-auto md:w-[60rem] w-full mt-4 md:p-0 p-5">
     <h1 class="text-6xl font-extrabold my-4">
       <span
         class="font-extrabold bg-gradient-to-r from-red-500/80 to-red-400/90 text-transparent bg-clip-text"
@@ -13,7 +13,7 @@ import Layout from "../../../layouts/Layout.astro";
       <span>Playground</span>
     </h1>
     <div>
-    <div class="flex flex-col w-1/2">
+    <div class="flex flex-col md:w-1/2 w-full">
       <div class="flex w-full justify-between gap-4">
         <div class="w-1/2">
           <label class="w-full overflow-h block my-2">
@@ -138,7 +138,7 @@ import Layout from "../../../layouts/Layout.astro";
 <style>
   body {
     background:
-      url(sa0000.png) repeat,
+      url(../sa0000.png) repeat,
       rgb(255, 238, 238);
     background-size: 300px;
     background-blend-mode: soft-light;

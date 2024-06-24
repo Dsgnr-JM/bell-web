@@ -18,28 +18,31 @@ const itemsLang = {
     <ol
         class="md:w-[60rem] w-full mx-auto flex justify-center md:gap-5 gap-2 items-center h-14 header-h"
     >
-        <li>
+        <li class="view">
             <a href={`#${itemsLang.home}`}>{t("nav.home")}</a>
         </li>
-        <li>
+        <li class="view">
             <a href={`#${itemsLang.installation}`}
                 >{t("nav.installation")}</a
             >
         </li>
-        <li>
+        <li class="view">
             <a href={`#${itemsLang.started}`}
                 >{t("nav.started")}</a
             >
         </li>
-        <li>
+        <li class="view">
             <a href={`#${itemsLang.parameters}`}
                 >{t("nav.parameters")}</a
             >
         </li>
+        <li>
+            <a href={isEn ? "/es" : "/"}>{lang.toUpperCase()}</a>
+        </li>
     </ol>
 </navbar>
 <script define:vars={{itemsLang}}>
-    const $navItems = document.querySelectorAll("navbar > ol > li")
+    const $navItems = document.querySelectorAll("navbar > ol > li.view")
     const $ = (e) => document.getElementById(e)
 
     document.addEventListener("DOMContentLoaded",() => {
