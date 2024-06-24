@@ -1,7 +1,5 @@
 ---
 import Layout from "./Layout.astro";
-import Tag from "../components/Tag.astro";
-import Author from "../components/Author.astro";
 import PostScrolling from '../components/PostScrolling.astro'
 import Arrow from '../components/icons/Arrow.astro'
 import type { FrontMatter } from "../types";
@@ -92,7 +90,8 @@ const datePub = datePubOriginal.toLocaleDateString('es-ES',{day: '2-digit',month
     @apply w-full object-cover h-auto mb-2 rounded-md max-h-96;
   }
   .markdown pre {
-    @apply relative my-5 text-base shadow-xl shadow-black/10 rounded-md py-2 px-3;
+    padding:1rem 0.75rem;
+    @apply relative my-5 text-base shadow-xl shadow-black/10 rounded-md;
   }
   .markdown ol > li {
     @apply text-2xl mt-8 pt-1 font-extrabold dark:text-sky-400 text-blue-500;

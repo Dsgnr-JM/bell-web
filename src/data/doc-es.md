@@ -1,8 +1,10 @@
-**Bell** es una libreria para crear alertas modernas y elegantes, la misma esta basada en la libreria Sonner pero compatible con entornos que se ejecutan con vanilla JavaScript, this libraria es ligera en cuanto a peso, se ajusta a tu diseño, tiene un buen rendimiento y no necesita de instalar dependencias. Puedes encontrar mas infomacion sobre el proyecto y su desarrollo [aqui](https://github.com/Dsgnr-JM/bell). 
+**Bell** es una libreria para crear alertas modernas y elegantes, la misma esta basada en la libreria Sonner pero compatible con entornos que se ejecutan con vanilla JavaScript, esta libreria es ligera en cuanto a peso, se ajusta a tu diseño, tiene un buen rendimiento y no necesita de instalar dependencias. Puedes encontrar mas infomacion sobre el proyecto y su desarrollo [aqui](https://github.com/Dsgnr-JM/bell). 
 
 ## Instalacion
 
-Por los momentos el paquete Bell esta solo disponible desde un CDN en Github, recomendamos que descargues la libreria y la uses localmente. El paquete de NPM estara disponible pronto y con una CDN mas rapida.
+Existen dos formas de usar BellJs, desde una CDN en Github o desde nuestro paquete de NPM. Si usas la CDN te recomendamos que descargues directamenete la libreria y la uses en local. BellJs ya es estable y puede ser usada en produccion sin ningun problema.
+
+**Para usar con CDN:**
 
 ```html
 <link type="stylesheet" rel="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.css"/>
@@ -10,12 +12,19 @@ Por los momentos el paquete Bell esta solo disponible desde un CDN en Github, re
 <script src="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.js"></script>
 ```
 
+**Para usar con NPM:**
+
+```bash
+npm i bell-alert
+```
+
+Luego de esto el procedimiento para usar Bell son los mismos ya sea desde `CDN` o `NPM`.
+
 ## Primeros pasos
 
 Estos son los primeros pasos para empezar a usar Bell. Esta libreria trabaja con instancias de clases, esto significa que debemos crear una y luengo lanzar la alerta. Primero que nada necesitamos vincular Bell.
 
 ```html
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +37,6 @@ Estos son los primeros pasos para empezar a usar Bell. Esta libreria trabaja con
     <script src="github.com/Dsgnr-JM/bell/bell.js"></script>
 </body>
 </html>
-
 ```
 
 > Si tu usas Bell desde una *CDN* deberas importar tambien el Css.
@@ -36,7 +44,6 @@ Estos son los primeros pasos para empezar a usar Bell. Esta libreria trabaja con
 Lo siguiente sera crear una instancia Bell con los parametros necesarios para que funcione correctamente. El primer parametro es un objeto con el `title`: esta propiedad hace referencia a el titulo de la alerta y `description`: se refiere a la descripcion o el texto secundario, el segundo parametro se refiere al tipo de alerta entre los cuales tenemos (`info`,`check`,`error`,`warning`)  y finalmente un objeto con diferentes propiedades de configuracion.
 
 ```js
-
 const options = [
     {
         title:"Hola",
@@ -54,8 +61,6 @@ const options = [
     }
 ]
 const bell = new Bell(...options)
-
-
 ```
 
 > Pasamos como parametros la constante `options` , esta es solo una forma de pasar parametros.
@@ -63,9 +68,7 @@ const bell = new Bell(...options)
 Si revisamos la pagina, no se estara mostrando nada sobre la alerta, para lanzarla solo necesitamos usar el metodo `launch` que se refiere a que la alerta se mostrara en pantalla.
 
 ```js
-
 bell.launch()
-
 ```
 
 Listo, ahora puedes usar Bell para crear tus alertas modernas y personalizables, de manera rapida y sin perdida de rendimiento.

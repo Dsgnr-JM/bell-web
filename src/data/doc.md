@@ -2,13 +2,23 @@ Bell is a library to create modern and elegant alerts, it is based on the Sonner
 
 ## Installation
 
-For the moment the Bell package is available from a CDN on Github, we recommend downloading and using them locally. Soon the NPM package available and from a faster CDN.
+There are two ways to use BellJs, from a CDN on Github or from our NPM package. If you use the CDN, we recommend that you download the library directly and use it locally. BellJs is now stable and can be used in production without any problem.
+
+**Use with CDN:**
 
 ```html
 <link type="stylesheet" rel="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.css"/>
 
 <script src="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.js"></script>
 ```
+
+**Use with NPM:**
+
+```bash
+npm i bell-alert
+```
+
+After this, the procedure to use Bell is the same whether from `CDN` or `NPM`:
 
 ## Getting started
 
