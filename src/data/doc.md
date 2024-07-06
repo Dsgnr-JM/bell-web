@@ -4,18 +4,46 @@ Bell is a library to create modern and elegant alerts, it is based on the Sonner
 
 There are two ways to use BellJs, from a CDN on Github or from our NPM package. If you use the CDN, we recommend that you download the library directly and use it locally. BellJs is now stable and can be used in production without any problem.
 
-**Use with CDN:**
-
-```html
-<link type="stylesheet" rel="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.css"/>
-
-<script src="https://raw.githubusercontent.com/Dsgnr-JM/bell/master/bell.js"></script>
-```
-
-**Use with NPM:**
+**Use with NPM(recommended):**
 
 ```bash
 npm i bell-alert
+```
+
+**Using CDN of JsDelivr:**
+
+```html
+<!-- Desarrollo -->
+<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.js"/>
+
+<!-- Produccion -->
+<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.min.js"/>
+```
+
+```html
+<!-- Desarrollo -->
+<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.css"/>
+
+<!-- Produccion -->
+<link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.min.css"/>
+```
+
+**Using CDN of UNPKG:**
+
+```html
+<!-- Desarrollo -->
+<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.js"/>
+
+<!-- Produccion -->
+<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.min.js"/>
+```
+
+```html
+<!-- Desarrollo -->
+<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.css"/>
+
+<!-- Produccion -->
+<link type="stylesheet" rel="https://www.unpkg.com/bell-alert/dist/bell.min.css"/>
 ```
 
 After this, the procedure to use Bell is the same whether from `CDN` or `NPM`:
@@ -32,10 +60,10 @@ These are the first steps to start. Bell works by class instances, this means we
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Bell</title>
-    <link type="stylesheet" rel="github.com/Dsgnr-JM/bell/bell.css"/>
+    <link type="stylesheet" rel="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.min.css"/>
 </head>
 <body>
-    <script src="github.com/Dsgnr-JM/bell/bell.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bell-alert/dist/bell.min.js"></script>
 </body>
 </html>
 
