@@ -35,7 +35,8 @@ const bellState = {
   position: null,
   num: 0,
   withDescription: false,
-  timeBetween: 0
+  timeBetween: 0,
+  maxHeight: 1000
 };
 
 class Bell {
@@ -99,7 +100,9 @@ class Bell {
     $bellTitle.textContent = this.text.title ?? "Text here";
     insertText.push($bellTitle);
 
-    if (this.text.description || bellState.withDescription) {
+    //  || bellState.withDescription
+
+    if (this.text.description) {
       bellState.withDescription = true
       const $bellDescription = document.createElement("p");
       $bellDescription.classList.add("bell_description");
@@ -117,6 +120,7 @@ class Bell {
     bellState.timeBetween = Number((document.querySelectorAll(".bell_container").length - 1).toString() + "0")
     this.$bellContainer.style.transitionDuration = `${this.transitionDuration}ms`;
     this.$bellContainer.style.transitionDelay = `${bellState.timeBetween}ms`
+    this.$bellContainer.setAttribute("bell-height",this.$bellContainer.clientHeight)
   }
 
   /**
@@ -124,16 +128,17 @@ class Bell {
    * @param {Object} e
    */
   hover(e) {
-    const { fromElement, target } = e;
-    const isBell = fromElement?.classList[0] === ("bell_container") ||
-      fromElement?.classList[0] === ("active") ||
-      fromElement?.classList[0] === ("bell_text-container") ||
-      fromElement?.classList[0] === ("bell_title") ||
-      fromElement?.classList[0] === ("bell_description") ||
-      fromElement?.classList[0] === ("bell_svg") ||
-      fromElement?.classList[0] === ("bell-path") ||
-      fromElement?.classList[0] === ("bell_icon") ||
-      fromElement?.classList[0] === ("bell")
+    const { fromElement, target, relatedTarget } = e;
+    const element = fromElement ?? relatedTarget
+    const isBell = element?.classList[0] === ("bell_container") ||
+      element?.classList[0] === ("active") ||
+      element?.classList[0] === ("bell_text-container") ||
+      element?.classList[0] === ("bell_title") ||
+      element?.classList[0] === ("bell_description") ||
+      element?.classList[0] === ("bell_svg") ||
+      element?.classList[0] === ("bell-path") ||
+      element?.classList[0] === ("bell_icon") ||
+      element?.classList[0] === ("bell")
     this.$bellNums = document.querySelectorAll(".bell_container");
     if (isBell) {
       for (let i = 0; i < this.$bellNums.length; i++) {
@@ -181,8 +186,11 @@ class Bell {
         $bellPrevPrev.style.bottom = "57px";
     }
     let top = 30;
-    [...$bellNums].reverse().forEach(($bell, i) => {
-      top += i > 0 ? ($bell.clientHeight + 15) : 0;
+    const $bellNumsArray =[...$bellNums]
+    if( $bellNums && $bellNums[$bellNums.length - 1]) bellState.maxHeight = $bellNums[$bellNums.length - 1].clientHeight;
+    $bellNumsArray.reverse().forEach(($bell, i) => {
+      $bell.style.height = `${bellState.maxHeight}px`;
+      top += i > 0 ? (Number($bellNumsArray[i - 1]?.getAttribute("bell-height")) + 15) : 0;
       $bell.style.setProperty("--top", `${top}px`);
       if ($bell.className.includes("hover")) this.$bellContainer.classList.add("hover")
     });
@@ -239,6 +247,7 @@ class Bell {
         bellState.position = null
         bellState.timeScreen = null
         bellState.withDescription = false
+        bellState.num = 0
       }
     }, this.transitionDuration + bellState.timeBetween);
   }

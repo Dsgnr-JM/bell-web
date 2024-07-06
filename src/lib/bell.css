@@ -19,7 +19,12 @@
   --bell_bg: rgba(255, 255, 255, 1);
   --bell_border: rgba(0, 0, 0, 0.05);
 }
-
+html.dark{
+  --bell_title: rgba(10, 10, 10, 0.7);
+  --bell_description: rgba(100, 100, 100, 0.65);
+  --bell_bg: rgba(255, 255, 255, 1);
+  --bell_border: rgba(0, 0, 0, 0.05);
+}
 /* Contenerdor del bell */
 
 .bell_container {
@@ -39,8 +44,18 @@
   position: fixed;
   z-index: 100;
   opacity: 0;
-  transition: 0.15s all ease-in;
-  box-shadow: 0 4px 12px rgb(0 0 0 /.08); 
+  transition: 0.15s opacity ease-in, 0.15s, top ease-in,0.15s bottom ease-in, 0.15s height ease-in;
+  box-shadow: 0 4px 12px rgb(88 88 88 /.08); 
+}
+.bell_container.active:nth-last-child(n + 4){
+  opacity: 0;
+}
+.bell_container:nth-last-child(2) > div,.bell_container:nth-last-child(3) > div{
+  opacity: 0;
+  transition: 0.15s ease-in;
+}
+.bell_container:nth-last-child(2).hover > div,.bell_container:nth-last-child(3).hover > div{
+  opacity: 1;
 }
 .bell_container.ease-in{
   transition-timing-function: ease-in-out;
@@ -57,6 +72,7 @@
 /* Componentes del bellAlert */
 
 .bell_icon {
+  position: relative;
   height: 22px;
   width: 22px;
 }
@@ -68,6 +84,7 @@
   height: 100%;
 }
 .bell_text-container {
+  position: relative;
   flex: 1;
   width: 200px;
   display: flex;
@@ -156,14 +173,17 @@
   top: 30px;
   --top:30px;
 }
+.bell_container.active.hover{
+  opacity: 1;
+  height: auto !important;
+  scale: 1 !important;
+}
 .bell_container.top-right.active.hover,
 .bell_container.top-left.active.hover {
   top: var(--top) !important;
-  scale: 1 !important;
 }
 
 .bell_container.bottom-right.active.hover,
 .bell_container.bottom-left.active.hover {
   bottom: var(--top) !important;
-  scale: 1 !important;
 }
