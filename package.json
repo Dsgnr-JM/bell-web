@@ -16,7 +16,7 @@
     "@fontsource-variable/onest": "^5.0.4",
     "@jotadev0/belljs": "^1.0.0",
     "astro": "^4.5.16",
-    "bell-alert": "^1.1.0",
+    "bell-alert": "^1.1.1",
     "nanostores": "^0.10.3",
     "tailwindcss": "^3.4.3"
   }

@@ -42,6 +42,7 @@ const bellState = {
 class Bell {
   $bellContainer;
   $bellNums;
+  $bellParent;
 
   /**
    * Bell.js es un proyecto OpenSource creado por JotaDev, para crear de manera rapida alertas parecidas a Sonner en cualquier proyectos vanilla y sin necesidad de React.
@@ -50,7 +51,7 @@ class Bell {
    * @param {String} text.title - Titulo de la alerta
    * @param {String} text.description - Descripcion de la alerta
    * @typedef {'info' | 'warning' | 'check' | 'error'} TipoAlerta
-   * @typedef {'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'} TipoPosition
+   * @typedef {'bottom-left' | 'bottom-right' | 'top-left' | 'top-right' | 'top-center' | 'bottom-center'} TipoPosition
    * @typedef {'ease-in' | 'ease-in-out' | 'bound' | 'bound-2' } TipoAnimacion
    * @param {TipoAlerta} type - Se indica el tipo de alerta
    * @param {Object} options - Opciones adicionales para la alerta
@@ -77,7 +78,7 @@ class Bell {
 
     if (!bellState.position) bellState.position = this.position;
 
-    this.$bellContainer = document.createElement("div");
+    this.$bellContainer = document.createElement("li");
     const classContainer = ["bell_container", this.position];
     const $bellIcon = document.createElement("span");
     const $bellTextContainer = document.createElement("div");
@@ -116,39 +117,24 @@ class Bell {
 
     if (!this.animate) this.$bellContainer.style.transition = "none";
 
-    document.querySelector("body").append(this.$bellContainer);
+    this.$bellParent = document.querySelector(".bell_parent")
+
+
+    if(!this.$bellParent){
+      this.$bellParent = document.createElement("ol")
+      this.$bellParent.classList.add("bell_parent")
+      document.body.append(this.$bellParent)
+    }
+    if(this.expand){
+      this.$bellParent.classList.add("expand")
+    }
+    this.$bellParent.classList.add(this.position)
+
+    this.$bellParent.append(this.$bellContainer);
     bellState.timeBetween = Number((document.querySelectorAll(".bell_container").length - 1).toString() + "0")
     this.$bellContainer.style.transitionDuration = `${this.transitionDuration}ms`;
     this.$bellContainer.style.transitionDelay = `${bellState.timeBetween}ms`
-    this.$bellContainer.setAttribute("bell-height",this.$bellContainer.clientHeight)
-  }
-
-  /**
-   * Funcion que recrea el expand para el elemento bellAlert
-   * @param {Object} e
-   */
-  hover(e) {
-    const { fromElement, target, relatedTarget } = e;
-    const element = fromElement ?? relatedTarget
-    const isBell = element?.classList[0] === ("bell_container") ||
-      element?.classList[0] === ("active") ||
-      element?.classList[0] === ("bell_text-container") ||
-      element?.classList[0] === ("bell_title") ||
-      element?.classList[0] === ("bell_description") ||
-      element?.classList[0] === ("bell_svg") ||
-      element?.classList[0] === ("bell-path") ||
-      element?.classList[0] === ("bell_icon") ||
-      element?.classList[0] === ("bell")
-    this.$bellNums = document.querySelectorAll(".bell_container");
-    if (isBell) {
-      for (let i = 0; i < this.$bellNums.length; i++) {
-        this.$bellNums[i].classList.add("hover");
-      }
-    } else if (target.classList[0] !== "bell_container") {
-      for (let i = 0; i < this.$bellNums.length; i++) {
-        this.$bellNums[i].classList.remove("hover");
-      }
-    }
+    this.$bellContainer.setAttribute("bell-height",this.$bellContainer.offsetHeight)
   }
   setPositions($bellNums, isRemove) {
     const $bellPrev = isRemove && this.$bellNums.length > 2 ? this.$bellNums[this.$bellNums.length - 3] :
@@ -160,39 +146,41 @@ class Bell {
     if(firstBell) firstBell.style.scale = "1"
     if (
       $bellPrev?.className.includes("top-left") ||
-      $bellPrev?.className.includes("top-right")
+      $bellPrev?.className.includes("top-right") ||
+      $bellPrev?.className.includes("top-center")
     ) {
-      $bellPrev.style.top = "44px";
+      $bellPrev.style.top = "45px";
       firstBell.style.top = "30px"
     }
     else if ($bellPrev?.className.includes("bell_container") && firstBell) {
       $bellPrev.className.includes("bell_container");
-      $bellPrev.style.bottom = "44px"; firstBell.style.bottom = "30px"
+      $bellPrev.style.bottom = "45px"; firstBell.style.bottom = "30px"
     }
     if (this.$bellNums.length > 2) {
       const $bellPrevPrev = $bellPrev?.previousElementSibling;
       if ($bellPrevPrev?.className.includes("bell_container")) $bellPrevPrev.style.scale = ".88";
       if (
         ($bellPrev?.className.includes("top-right") ||
+          $bellPrev?.className.includes("top-center") || 
           $bellPrev?.className.includes("top-left")) &&
         $bellPrevPrev?.className.includes("bell_container")
       )
-        $bellPrevPrev.style.top = "57px";
+        $bellPrevPrev.style.top = "60px";
       if (
-        ($bellPrev?.className.includes("bottom-left") ||
+        ($bellPrev?.className.includes("bottom-left") || $bellPrev?.className.includes("bottom-center") ||
                  $bellPrev?.className.includes("bottom-right")) &&
         $bellPrevPrev?.className.includes("bell_container")
       )
-        $bellPrevPrev.style.bottom = "57px";
+        $bellPrevPrev.style.bottom = "60px";
     }
     let top = 30;
     const $bellNumsArray =[...$bellNums]
-    if( $bellNums && $bellNums[$bellNums.length - 1]) bellState.maxHeight = $bellNums[$bellNums.length - 1].clientHeight;
+    if( $bellNums && $bellNums[$bellNums.length - 1]) bellState.maxHeight = $bellNums[$bellNums.length - 1].offsetHeight;
     $bellNumsArray.reverse().forEach(($bell, i) => {
       $bell.style.height = `${bellState.maxHeight}px`;
       top += i > 0 ? (Number($bellNumsArray[i - 1]?.getAttribute("bell-height")) + 15) : 0;
       $bell.style.setProperty("--top", `${top}px`);
-      if ($bell.className.includes("hover")) this.$bellContainer.classList.add("hover")
+      this.$bellParent.style.setProperty("--height-parent",`${top}px`)
     });
   }
   removeOnClick() {
@@ -213,8 +201,6 @@ class Bell {
       this.$bellNums = document.querySelectorAll(".bell_container");
       this.setPositions(this.$bellNums)
       this.$bellContainer.classList.add("active");
-      if (this.expand) document.body.addEventListener("mouseover", this.hover);
-      else this.$bellNums.forEach($bell => $bell.classList.add("hover"))
       const Timer = setTimeout(() => {
         this.removeOfScreen(this.$bellNums);
       }, time);
@@ -230,20 +216,21 @@ class Bell {
     this.setPositions($bells, $bells !== this.$bellNums)
     if (
       this.$bellContainer.className.includes("top-left") ||
+      this.$bellContainer.className.includes("top-center") ||
       this.$bellContainer.className.includes("top-right")
     )
       this.$bellContainer.style.top = "-75px";
     if (
       this.$bellContainer.className.includes("bottom-left") ||
-      this.$bellContainer.className.includes("bottom-right")
+      this.$bellContainer.className.includes("bottom-center") ||
+      this.$bellContainer.className.includes("bottom-right") 
     )
       this.$bellContainer.style.bottom = "-75px";
 
     setTimeout(() => {
       this.$bellContainer.remove();
-      if (this.expand && this.$bellNums === $bells) document.body.removeEventListener("mouseover", this.hover);
       if (document.querySelectorAll(".bell_container").length === 0) {
-        document.body.removeEventListener("mouseover", this.hover);
+        this.$bellParent.remove();
         bellState.position = null
         bellState.timeScreen = null
         bellState.withDescription = false

@@ -17,27 +17,13 @@
   --bell_title: rgba(10, 10, 10, 0.7);
   --bell_description: rgba(100, 100, 100, 0.65);
   --bell_bg: rgba(255, 255, 255, 1);
-  --bell_border: rgba(100, 100, 100, 0.25);
+  --bell_border: rgba(0, 0, 0, 0.05);
 }
 html.dark{
   --bell_title: rgba(10, 10, 10, 0.7);
   --bell_description: rgba(100, 100, 100, 0.65);
   --bell_bg: rgba(255, 255, 255, 1);
   --bell_border: rgba(0, 0, 0, 0.05);
-}
-
-/* Parent of bell */
-
-.bell_parent{
-  z-index: 10;
-  position: fixed;
-  padding: 10px;
-  --height-parent: 0px;
-  width: 350px;
-  height: 0;
-}
-.bell_parent:hover{
-  height: var(--height-parent);
 }
 /* Contenerdor del bell */
 
@@ -68,7 +54,7 @@ html.dark{
   opacity: 0;
   transition: 0.15s ease-in;
 }
-.bell_parent:hover .bell_container:nth-last-child(2) > div,.bell_container:nth-last-child(3) > div, .bell_parent.expand .bell_container:nth-last-child(2) > div,.bell_parent.expand .bell_container:nth-last-child(3) > div{
+.bell_container:nth-last-child(2).hover > div,.bell_container:nth-last-child(3).hover > div{
   opacity: 1;
 }
 .bell_container.ease-in{
@@ -128,50 +114,19 @@ html.dark{
   bottom: -70px;
   right: 30px;
 }
-.bell_parent.bottom-right{
-  bottom: 30px;
-  right: 30px;
-}
 .bell_container.bottom-left {
   bottom: -70px;
-  left: 30px;
-}
-.bell_parent.bottom-left{
-  bottom: 30px;
   left: 30px;
 }
 .bell_container.top-right {
   top: -70px;
   right: 30px;
 }
-.bell_parent.top-right{
-  top: 30px;
-  right: 30px;
-}
-.bell_container.top-left{
+.bell_container.top-left {
   top: -70px;
   left: 30px;
 }
-.bell_parent.top-left{
-  top: 30px;
-  left: 30px;
-}
-.bell_container.top-center{
-  top: -70px;
-  left: calc(50vw - 175px);
-}
-.bell_parent.top-center{
-  top: 30px;
-  left: calc(50vw - 175px);
-}
-.bell_container.bottom-center{
-  bottom: -70px;
-  left: calc(50vw - 175px);
-}
-.bell_parent.bottom-center{
-  bottom: 30px;
-  left: calc(50vw - 175px);
-}
+
 /* Tipos de bell */
 
 .bell_container.info {
@@ -179,28 +134,28 @@ html.dark{
   --bell_title: rgb(46 132 213);
   --bell_description: rgb(24 96 139 / 0.7);
   --bell_bg: rgb(242 250 255);
-  --bell_border: rgba(8, 145, 199, 0.35);
+  --bell_border: rgba(8, 145, 199, 0.15);
 }
 .bell_container.warning {
   --bell_svg: rgb(199, 110, 8);
   --bell_title: rgb(181, 99, 5);
   --bell_description: rgba(139, 85, 24, 0.7);
   --bell_bg: rgb(255 244 233);
-  --bell_border: rgba(199, 84, 8, 0.3);
+  --bell_border: rgba(199, 84, 8, 0.1);
 }
 .bell_container.error {
   --bell_svg: rgb(199, 8, 8);
   --bell_title: rgb(181, 5, 5, 0.9);
   --bell_description: rgba(139, 24, 24, 0.65);
   --bell_bg: rgb(255 240 240);
-  --bell_border: rgba(199, 8, 8, 0.3);
+  --bell_border: rgba(199, 8, 8, 0.05);
 }
 .bell_container.check {
   --bell_svg: rgb(8, 199, 18);
   --bell_title: rgb(10 127 0);
   --bell_description: rgba(43, 139, 24, 0.7);
   --bell_bg: rgb(241, 255, 245);
-  --bell_border: rgb(53 137 0 / .35);
+  --bell_border: rgba(24, 199, 8, 0.1);
 }
 
 /* Transiciones para el bell */
@@ -218,29 +173,17 @@ html.dark{
   top: 30px;
   --top:30px;
 }
-.bell_container.active.bottom-right,
-.bell_container.active.bottom-left,.bell_container.active.bottom-center {
-  bottom: 30px;
-  --top:30px;
-}
-.bell_container.active.top-right,
-.bell_container.active.top-left,.bell_container.active.top-center{
-  top: 30px;
-  --top:30px;
-}
-.bell_parent:hover .bell_container.active, .bell_parent.expand .bell_container.active{
+.bell_container.active.hover{
   opacity: 1;
   height: auto !important;
   scale: 1 !important;
 }
-.bell_parent:hover .bell_container.top-right.active,
-.bell_parent:hover .bell_container.top-center.active,
-.bell_parent:hover .bell_container.top-left.active, .bell_parent:hover .bell_container.top-center.active, .bell_parent.expand .bell_container.top-right.active, .bell_parent.expand .bell_container.top-center.active, .bell_parent.expand .bell_container.top-left.active, .bell_parent.expand .bell_container.top-center.active {
+.bell_container.top-right.active.hover,
+.bell_container.top-left.active.hover {
   top: var(--top) !important;
 }
 
-.bell_parent:hover .bell_container.bottom-right.active,
-.bell_parent:hover .bell_container.bottom-center.active,
-.bell_parent:hover .bell_container.bottom-left.active, .bell_parent:hover .bell_container.bottom-center.active, .bell_parent.expand .bell_container.bottom-right.active, .bell_parent.expand .bell_container.bottom-center.active, .bell_parent.expand .bell_container.bottom-left.active, .bell_parent.expand .bell_container.bottom-center.active {
+.bell_container.bottom-right.active.hover,
+.bell_container.bottom-left.active.hover {
   bottom: var(--top) !important;
 }
