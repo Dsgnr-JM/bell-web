@@ -1,0 +1,140 @@
+---
+
+import Layout from "../layouts/Layout.astro"
+
+---
+
+<Layout
+  title="Test || Bell.JS"
+  description="Bell.js is a library to create adaptative alerts quickly and efficiently, using Vanilla JS. You just have to create and launch."
+>
+</Layout>
+<style is:global>
+    /*div{
+        width: 100%;
+    }
+    h2{
+        font-size: .92rem;
+        font-weight: 600;
+    }
+    p{
+        font-size: .9rem;
+        opacity: .8;
+    }
+    div > div{
+        display: flex;
+        justify-content: start;
+        width: 100%;
+        gap:4px;
+        margin-top: 9px;
+    }
+    div > div button{
+        padding: 3px 8px;
+        background: black;
+        color: white;
+        font-size: .85rem;
+        border-radius: 5px;
+    }
+    div > div button:first-child{
+        background: transparent;
+        color: #000;
+    }*/
+    .dark{background: #1a1a19}
+</style>
+<script>
+document.body.classList.add("dark")
+    import Bell from "../lib/index.js"
+    // function saludar(){
+
+    // }
+    // const bell = new Bell({title:"Bell is here",description:"Hoka mi bb"},"none",{
+    //     animate:true,
+    //     isColored: true,
+    //     typeAnimation:"bound-2",
+    //     customHTML: `<div><h2>Quieres completar la accion</h2><p>El usuario sera eliminado del registro</p><div><button>Cancelar</button><button id="button">Eliminar</button></div></div>`,
+    //     removeOn: "button",
+    //     timeScreen:120000
+    // })
+    // bell.launch()
+    // const $btn = document.querySelector("#button")
+
+    // $btn.addEventListener("click",() => bell.removeOfScreen())
+
+    // const promise = new Promise((res,rej)=>{
+    //     setTimeout(()=>{
+    //         res()
+    //     },4000)
+    // })
+    // const type= ["success","error","warning","info"]
+    //   const bell = new Bell({
+    //   title: "Bell is now",
+    // },"promise",{
+    //   typeAnimation:"bound-2",
+    //   theme: "light",
+    //   animate: true,
+    //   customIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="#B2B9BD" stroke="#B2B9BD" stroke-width="15" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin="0"/></circle><circle fill="#B2B9BD" stroke="#B2B9BD" stroke-width="15" opacity=".8" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".05"/></circle><circle fill="#B2B9BD" stroke="#B2B9BD" stroke-width="15" opacity=".6" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".1"/></circle><circle fill="#B2B9BD" stroke="#B2B9BD" stroke-width="15" opacity=".4" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".15"/></circle><circle fill="#B2B9BD" stroke="#B2B9BD" stroke-width="15" opacity=".2" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".2"/></circle></svg>`,
+    //   timeScreen: 100000,
+    //   customClass: "siuu",
+    //   removeOn:"button",
+    //   draggable: true,
+    //   timeline:true,
+    // }).promise(promise,{
+    //     success: "Usuario registrado",
+    //     pending: "Conectandose a la bd...",
+    //     error: "No se pudo registrar"
+    // })
+    // const promise2 = new Promise((res,rej)=>{
+    //     setTimeout(()=>{
+    //         rej()
+    //     },6000)
+    // })
+    //   const bell2 = new Bell({
+    //   title: "Bell is now",
+    // },"info",{
+    //   typeAnimation:"bound-2",
+    //   theme: "light",
+    //   animate: true,
+    //   removeOn: "click",
+    //   timeScreen: 100000,
+    //   timeline:true
+    // }).promise(promise2,{
+    //     success: "Usuario registrado",
+    //     pending: "Conectandose a la bd...",
+    //     error: "No se pudo registrar"
+    // })
+    const iP = performance.now()
+
+    new Bell({
+        title: "New themes",
+        description:"Upps anyware false"
+    },"info",{timeScreen:100000,theme:"gradient", removeOn:"button",timeline:true,position:"bottom-center"}).launch()
+    new Bell({
+        title: "New themes",
+        description:"Upps anyware false"
+    },"warning",{timeScreen:100000,theme:"gradient", removeOn:"button",timeline:true,position:"bottom-center"}).launch()
+    new Bell({
+        title: "New themes",
+        description:"Upps anyware false"
+    },"error",{timeScreen:100000,theme:"gradient", removeOn:"button",timeline:true,position:"bottom-center"}).launch()
+    new Bell({
+        title: "New themes",
+        description:"Upps anyware false"
+    },"success",{timeScreen:100000,theme:"gradient", removeOn:"button",timeline:true,position:"bottom-center"}).launch()
+    const eP = performance.now()
+    // setTimeout(()=>{
+    //     new Bell({
+    //     title: "Major customization"
+    // },"warning",{theme:"gradient",timeScreen:10000, removeOn:"button",position:"bottom-center"}).launch()
+    // },1000)
+    // setTimeout(()=>{
+    //     new Bell({
+    //     title: "Easy configuration"
+    // },"error",{theme:"gradient",timeScreen:10000, removeOn:"button",position:"bottom-center"}).launch()
+    // },2000)
+    // setTimeout(()=>{
+    //     new Bell({
+    //     title: "Low weight"
+    // },"info",{theme:"gradient",timeScreen:10000, removeOn:"button",position:"bottom-center"}).launch()
+    // },3000)
+
+</script>

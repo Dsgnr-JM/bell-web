@@ -1,0 +1,30 @@
+/* Theme Light */
+
+.b_c.light{
+  border: none;
+}
+
+.b_c.light.info{
+  --b_bg: rgb(255 255 255);
+  --b_d: rgb(120 120 120);
+  --b_svg:rgb(48 160 207);
+  --b_t:rgb(40 40 40);
+}
+.b_c.warning.light{
+  --b_bg: rgb(255 255 255);
+  --b_d: rgb(120 120 120);
+  --b_t:rgb(40 40 40);
+  --b_svg:rgb(200 96 34);
+}
+.b_c.error.light{
+  --b_bg: rgb(255 255 255);
+  --b_d: rgb(120 120 120);
+  --b_t:rgb(40 40 40);
+  --b_svg:rgb(205 53 53);
+}
+.b_c.success.light{
+  --b_bg: rgb(255 255 255);
+  --b_d: rgb(120 120 120);
+   --b_t:rgb(40 40 40);
+  --b_svg:#4CAF50;
+}

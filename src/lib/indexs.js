@@ -3,26 +3,11 @@
 import './bell.css';
 
 const $icons = {
-  info: `<svg width="20px" height="20px" class="bell" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 8V8.5M12 12V16M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" class="bell-path" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`,
-  error: `<svg width="20px" height="20px" class="bell" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g id="Page-1" stroke="none" stroke-width="1" class="bell-path" fill="none" fill-rule="evenodd">
-      <g id="add" fill="currentColor" class="bell-path" transform="translate(42.666667, 42.666667)">
-          <path class="bell-path" d="M213.333333,3.55271368e-14 C331.136,3.55271368e-14 426.666667,95.5306667 426.666667,213.333333 C426.666667,331.136 331.136,426.666667 213.333333,426.666667 C95.5306667,426.666667 3.55271368e-14,331.136 3.55271368e-14,213.333333 C3.55271368e-14,95.5306667 95.5306667,3.55271368e-14 213.333333,3.55271368e-14 Z M213.333333,42.6666667 C119.232,42.6666667 42.6666667,119.232 42.6666667,213.333333 C42.6666667,307.434667 119.232,384 213.333333,384 C307.434667,384 384,307.434667 384,213.333333 C384,119.232 307.434667,42.6666667 213.333333,42.6666667 Z M262.250667,134.250667 L292.416,164.416 L243.498667,213.333333 L292.416,262.250667 L262.250667,292.416 L213.333333,243.498667 L164.416,292.416 L134.250667,262.250667 L183.168,213.333333 L134.250667,164.416 L164.416,134.250667 L213.333333,183.168 L262.250667,134.250667 Z" id="error">
-
-</path>
-      </g>
-  </g>
-</svg>`,
-  warning: `<svg width="20px" height="20px" class="bell"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="17" r="1" fill="currentColor" class="bell-path"/>
-  <path class="bell-path" d="M12 10L12 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="bell-path" d="M3.44722 18.1056L10.2111 4.57771C10.9482 3.10361 13.0518 3.10362 13.7889 4.57771L20.5528 18.1056C21.2177 19.4354 20.2507 21 18.7639 21H5.23607C3.7493 21 2.78231 19.4354 3.44722 18.1056Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`,
-  check: `<svg width="20px" height="20px" class="bell"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path class="bell-path" d="M16 3.93552C14.795 3.33671 13.4368 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 11.662 20.9814 11.3283 20.9451 11M21 5L12 14L9 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`,
+  promise: `<svg width="20px" height="20px" style="fill:currentColor !important" class="bell" viewBox="0 0 24 24" fill="currentColor" hexmlns="http://www.w3.org/2000/svg"><path d="M18.364 5.63604L16.9497 7.05025C15.683 5.7835 13.933 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12H21C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C14.4853 3 16.7353 4.00736 18.364 5.63604Z"/></svg>`,
+  info: `<svg width="40" height="40" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896zm0 192a58.432 58.432 0 0 0-58.24 63.744l23.36 256.384a35.072 35.072 0 0 0 69.76 0l23.296-256.384A58.432 58.432 0 0 0 512 256zm0 512a51.2 51.2 0 1 0 0-102.4 51.2 51.2 0 0 0 0 102.4z"/></svg>`,
+  error: `<svg width="40" height="40" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 42.667c117.803 0 213.333 95.53 213.333 213.333S373.803 469.333 256 469.333 42.667 373.803 42.667 256 138.197 42.667 256 42.667Zm48.917 134.25L256 225.835l-48.917-48.918-30.166 30.166L225.835 256l-48.918 48.917 30.166 30.166L256 286.165l48.917 48.918 30.166-30.166L286.165 256l48.918-48.917-30.166-30.166Z" fill="currentColor" fill-rule="evenodd"/></svg>`,
+  warning: `<svg width="40" height="40" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M30.555 25.219 18.036 3.783a2.675 2.675 0 0 0-3.782 0L1.734 25.219a2.674 2.674 0 0 0 0 3.781h28.82a2.671 2.671 0 0 0 .001-3.781zM14.992 11.478a1.5 1.5 0 1 1 3 0v7a1.5 1.5 0 0 1-3 0v-7zm1.509 13.508a1.5 1.5 0 1 1-.001-2.999 1.5 1.5 0 0 1 .001 2.999z"/></svg>`,
+  success: `<svg width="40" height="40" viewBox="0 0 1024 1024" fill="currentColor" class="icon" xmlns="http://www.w3.org/2000/svg"><path d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896zm-55.808 536.384-99.52-99.584a38.4 38.4 0 1 0-54.336 54.336l126.72 126.72a38.272 38.272 0 0 0 54.336 0l262.4-262.464a38.4 38.4 0 1 0-54.272-54.336L456.192 600.384z"/></svg>`,
 };
 
 /**
@@ -42,6 +27,8 @@ const bellState = {
 class Bell {
   $bellContainer;
   $bellNums;
+  $bellParent;
+  timer;
 
   /**
    * Bell.js es un proyecto OpenSource creado por JotaDev, para crear de manera rapida alertas parecidas a Sonner en cualquier proyectos vanilla y sin necesidad de React.
@@ -49,8 +36,8 @@ class Bell {
    * @param {Object} text - Objeto con las propiedades title y description
    * @param {String} text.title - Titulo de la alerta
    * @param {String} text.description - Descripcion de la alerta
-   * @typedef {'info' | 'warning' | 'check' | 'error'} TipoAlerta
-   * @typedef {'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'} TipoPosition
+   * @typedef {'info' | 'warning' | 'success' | 'error'} TipoAlerta
+   * @typedef {'bottom-left' | 'bottom-right' | 'top-left' | 'top-right' | 'top-center' | 'bottom-center'} TipoPosition
    * @typedef {'ease-in' | 'ease-in-out' | 'bound' | 'bound-2' } TipoAnimacion
    * @param {TipoAlerta} type - Se indica el tipo de alerta
    * @param {Object} options - Opciones adicionales para la alerta
@@ -61,6 +48,9 @@ class Bell {
    * @param {TipoAnimacion} options.typeAnimation - Tipo de animacion
    * @param {Number} options.timeScreen - Tiempo en pantalla
    * @param {Boolean} options.expand - Efecto de Expansion
+   * @param {|'colors','default'} options.theme - Tema de la alerta
+   * @param {|'none','default' | 'full'} options.borderRadius - Border radius del contenedor de la alerta
+   * @param {Boolean} options.timeline - Linea de tiempo
    * @returns {Bell} - Clase Bell
    */
   constructor(text, type, options) {
@@ -71,132 +61,181 @@ class Bell {
     this.transitionDuration = options?.transitionDuration ?? 300;
     this.position = bellState.position ?? options?.position ?? "bottom-right";
     this.typeAnimation = options?.typeAnimation ?? "fade-in";
-    this.timeScreen = bellState.timeScreen ?? options?.timeScreen ?? 3000;
+    this.timeScreen = this.type == "promise" ? 100000 : bellState.timeScreen ?? options?.timeScreen ?? 3000;
     this.expand = options?.expand ?? false;
+    this.theme = options?.theme !== "default" && options?.theme ? options?.theme : null
+    this.borderRadius = options?.borderRadius !== "default" && options?.borderRadius ? options?.borderRadius : null
+    this.customClass = options?.customClass !== "default" && options?.customClass ? options?.customClass : null
+    this.timeline = options?.timeline ? "timeline" : ""
     if (!bellState.timeScreen) bellState.timeScreen = this.timeScreen;
 
-    if (!bellState.position) bellState.position = this.position;
+    //if (!bellState.position) bellState.position = this.position;
 
-    this.$bellContainer = document.createElement("div");
-    const classContainer = ["bell_container", this.position];
-    const $bellIcon = document.createElement("span");
-    const $bellTextContainer = document.createElement("div");
-    const $bellTitle = document.createElement("h3");
+    this.$bellContainer = document.createElement("li");
+    const classContainer = ["b_c", this.position];
+    this.$bellIcon = document.createElement("span");
+    this.$bellTextContainer = document.createElement("div");
+    this.$bellTitle = document.createElement("h3");
     const insertText = [];
 
-    $bellTextContainer.classList.add("bell_text-container");
+    this.$bellTextContainer.classList.add("b_t-c");
 
-    if (this.isColored) {
-      classContainer.push(type);
-    }
+    const classAdd = [this.isColored,this.type,this.theme,this.borderRadius,this.customClass, this.timeline]
+
+    classAdd.forEach(classItem => classItem && classContainer.push(classItem))
+
 
     this.$bellContainer.classList.add(...classContainer);
     this.$bellContainer.classList.add(this.typeAnimation)
 
-    $bellIcon.classList.add("bell_icon");
-    $bellIcon.innerHTML = $icons[this.type];
+    this.$bellIcon.classList.add("b_i");
+    this.$bellIcon.innerHTML = $icons[this.type];
 
-    $bellTitle.classList.add("bell_title");
-    $bellTitle.textContent = this.text.title ?? "Text here";
-    insertText.push($bellTitle);
+    this.$bellTitle.classList.add("b_t");
+    this.$bellTitle.textContent = this.text.title ?? "Text here";
+    insertText.push(this.$bellTitle);
 
     //  || bellState.withDescription
 
     if (this.text.description) {
       bellState.withDescription = true
       const $bellDescription = document.createElement("p");
-      $bellDescription.classList.add("bell_description");
+      $bellDescription.classList.add("b_d");
       $bellDescription.textContent = this.text.description ?? "Text here...";
       insertText.push($bellDescription);
     }
 
-    $bellTextContainer.append(...insertText);
-    this.$bellContainer.append($bellIcon, $bellTextContainer);
+    this.$bellTextContainer.append(...insertText);
+    this.$bellContainer.append(this.$bellIcon, this.$bellTextContainer);
     this.$bellContainer.setAttribute("bell-num", bellState.num++)
 
-    if (!this.animate) this.$bellContainer.style.transition = "none";
+    if (!this.animate) {
+      this.$bellContainer.style.transition = "none"
+      this.$bellTextContainer.style.transition = "none"
+    }else{
+      this.$bellContainer.style.transition = `${this.transitionDuration}ms ease all ${bellState.timeBetween}ms`
+    }
 
-    document.querySelector("body").append(this.$bellContainer);
-    bellState.timeBetween = Number((document.querySelectorAll(".bell_container").length - 1).toString() + "0")
-    this.$bellContainer.style.transitionDuration = `${this.transitionDuration}ms`;
-    this.$bellContainer.style.transitionDelay = `${bellState.timeBetween}ms`
-    this.$bellContainer.setAttribute("bell-height",this.$bellContainer.clientHeight)
+    this.$bellParent = document.querySelector(`.b_p.${this.position}`)
+
+
+    if (!this.$bellParent) {
+      this.$bellParent = document.createElement("ol")
+      this.$bellParent.classList.add("b_p")
+      document.body.append(this.$bellParent)
+    }
+    if (this.expand) {
+      this.$bellParent.classList.add("expand")
+    }
+    this.$bellParent.classList.add(this.position)
+
+    this.$bellParent.append(this.$bellContainer);
+    bellState.timeBetween = Number((document.querySelectorAll(`.b_c.${this.position}`).length - 1).toString() + "0")
   }
 
   /**
-   * Funcion que recrea el expand para el elemento bellAlert
-   * @param {Object} e
-   */
-  hover(e) {
-    const { fromElement, target, relatedTarget } = e;
-    const element = fromElement ?? relatedTarget
-    const isBell = element?.classList[0] === ("bell_container") ||
-      element?.classList[0] === ("active") ||
-      element?.classList[0] === ("bell_text-container") ||
-      element?.classList[0] === ("bell_title") ||
-      element?.classList[0] === ("bell_description") ||
-      element?.classList[0] === ("bell_svg") ||
-      element?.classList[0] === ("bell-path") ||
-      element?.classList[0] === ("bell_icon") ||
-      element?.classList[0] === ("bell")
-    this.$bellNums = document.querySelectorAll(".bell_container");
-    if (isBell) {
-      for (let i = 0; i < this.$bellNums.length; i++) {
-        this.$bellNums[i].classList.add("hover");
+   * @param {Promise} promise
+   * @param {Array} states
+   * */
+
+  promise(promise, states) {
+    this.$bellContainer.classList.remove(this.type)
+    this.$bellContainer.classList.add("pending")
+    const $title = document.createElement("h3")
+    const $icon = document.createElement("span")
+    $icon.classList.add("promise")
+    $icon.innerHTML = $icons["promise"];
+    this.$bellIcon.append($icon)
+    $title.classList.add(["b_t_p"])
+    this.$bellTextContainer.querySelector(".b_d")?.remove()
+    this.$bellTextContainer.append($title)
+    $title.textContent = states.pending
+    this.launch(true)
+    promise.then(() => {
+      this.$bellIcon.innerHTML = $icons["success"]
+      this.$bellContainer.classList.add("success")
+      this.$bellContainer.classList.remove("pending")
+      this.$bellContainer.classList.add("complete")
+      this.$bellTitle.textContent = states.success
+      if(this.timeline){
+        this.#initTimeline()
       }
-    } else if (target.classList[0] !== "bell_container") {
-      for (let i = 0; i < this.$bellNums.length; i++) {
-        this.$bellNums[i].classList.remove("hover");
+      this.timer = setTimeout(() => {
+        this.removeOfScreen(this.$bellNums)
+      }, this.timeScreen)
+    }).catch((e) => {
+      this.$bellIcon.innerHTML = $icons["error"]
+      this.$bellContainer.classList.add("error")
+      this.$bellContainer.classList.remove("pending")
+      this.$bellContainer.classList.add("complete")
+      this.$bellTitle.textContent = states.error  
+      if(this.timeline){
+        this.#initTimeline()
       }
-    }
+      this.timer = setTimeout(() => {
+        this.removeOfScreen(this.$bellNums)
+      }, this.timeScreen)
+    })
   }
+
+
+  #initTimeline(){
+    let widthTimeline = 350
+    this.$bellContainer.classList.add("init_count")
+    this.$bellContainer.style.setProperty("--t_an", this.timeScreen + "ms")
+  }
+
+
   setPositions($bellNums, isRemove) {
     const $bellPrev = isRemove && this.$bellNums.length > 2 ? this.$bellNums[this.$bellNums.length - 3] :
       this.$bellNums[this.$bellNums.length - 1].previousElementSibling;
     if ($bellPrev?.className.includes("active"))
       $bellPrev.style.scale = ".94";
     let firstBell = $bellNums[$bellNums.length > 1 ? ($bellNums.length - 1) : 0]
-    firstBell = firstBell ?? document.querySelector(".bell_container")
-    if(firstBell) firstBell.style.scale = "1"
+    firstBell = firstBell ?? document.querySelector(`.b_c.${this.position}`)
+    if (firstBell) firstBell.style.scale = "1"
     if (
       $bellPrev?.className.includes("top-left") ||
-      $bellPrev?.className.includes("top-right")
+      $bellPrev?.className.includes("top-right") ||
+      $bellPrev?.className.includes("top-center")
     ) {
-      $bellPrev.style.top = "44px";
+      $bellPrev.style.top = "45px";
       firstBell.style.top = "30px"
     }
-    else if ($bellPrev?.className.includes("bell_container") && firstBell) {
-      $bellPrev.className.includes("bell_container");
-      $bellPrev.style.bottom = "44px"; firstBell.style.bottom = "30px"
+    else if ($bellPrev?.className.includes("b_c") && firstBell) {
+      $bellPrev.className.includes("b_c");
+      $bellPrev.style.bottom = "45px"; firstBell.style.bottom = "30px"
     }
     if (this.$bellNums.length > 2) {
       const $bellPrevPrev = $bellPrev?.previousElementSibling;
-      if ($bellPrevPrev?.className.includes("bell_container")) $bellPrevPrev.style.scale = ".88";
+      if ($bellPrevPrev?.className.includes("b_c")) $bellPrevPrev.style.scale = ".88";
       if (
         ($bellPrev?.className.includes("top-right") ||
+          $bellPrev?.className.includes("top-center") || 
           $bellPrev?.className.includes("top-left")) &&
-        $bellPrevPrev?.className.includes("bell_container")
+        $bellPrevPrev?.className.includes("b_c")
       )
-        $bellPrevPrev.style.top = "57px";
+        $bellPrevPrev.style.top = "60px";
       if (
-        ($bellPrev?.className.includes("bottom-left") ||
-                 $bellPrev?.className.includes("bottom-right")) &&
-        $bellPrevPrev?.className.includes("bell_container")
+        ($bellPrev?.className.includes("bottom-left") || $bellPrev?.className.includes("bottom-center") ||
+          $bellPrev?.className.includes("bottom-right")) &&
+        $bellPrevPrev?.className.includes("b_c")
       )
-        $bellPrevPrev.style.bottom = "57px";
+        $bellPrevPrev.style.bottom = "60px";
     }
     let top = 30;
-    const $bellNumsArray =[...$bellNums]
-    if( $bellNums && $bellNums[$bellNums.length - 1]) bellState.maxHeight = $bellNums[$bellNums.length - 1].clientHeight;
+    const $bellNumsArray = [...$bellNums]
+    if ($bellNums && $bellNums[$bellNums.length - 1]) bellState.maxHeight = $bellNums[$bellNums.length - 1].offsetHeight;
     $bellNumsArray.reverse().forEach(($bell, i) => {
       $bell.style.height = `${bellState.maxHeight}px`;
       top += i > 0 ? (Number($bellNumsArray[i - 1]?.getAttribute("bell-height")) + 15) : 0;
       $bell.style.setProperty("--top", `${top}px`);
-      if ($bell.className.includes("hover")) this.$bellContainer.classList.add("hover")
+      this.$bellParent.style.setProperty("--height-parent", `${top}px`)
     });
   }
   removeOnClick() {
-    this.$bellNums = document.querySelectorAll(".bell_container");
+    clearTimeout(this.timer)
+    this.$bellNums = document.querySelectorAll(`.b_c.${this.position}`);
     const $bells = [...this.$bellNums].filter($bell => {
       return $bell.getAttribute("bell-num") !== this.$bellContainer.getAttribute("bell-num")
     })
@@ -206,20 +245,24 @@ class Bell {
   /**
    * Metodo que lanza el bellAlert y lo mues¨tra en pantalla
    */
-  launch() {
+  launch(isPromise) {
+    this.$bellContainer.setAttribute("bell-height", this.$bellContainer.offsetHeight)
     setTimeout(() => {
       this.$bellContainer.addEventListener("click", this.removeOnClick.bind(this))
-      let time = this.timeScreen;
-      this.$bellNums = document.querySelectorAll(".bell_container");
+      this.$bellNums = document.querySelectorAll(`.b_c.${this.position}`);
       this.setPositions(this.$bellNums)
       this.$bellContainer.classList.add("active");
-      if (this.expand) document.body.addEventListener("mouseover", this.hover);
-      else this.$bellNums.forEach($bell => $bell.classList.add("hover"))
-      const Timer = setTimeout(() => {
-        this.removeOfScreen(this.$bellNums);
-      }, time);
-    }, 80)
+      if (!isPromise) {
+        if(this.timeline){
+          this.#initTimeline()
+        }
+        this.timer = setTimeout(() => {
+          this.removeOfScreen(this.$bellNums);
+        }, this.timeScreen);
+      }
+    }, 100)
   }
+
   /**
    * Metodo que remueve el bellAlert del DOM
    */
@@ -230,20 +273,21 @@ class Bell {
     this.setPositions($bells, $bells !== this.$bellNums)
     if (
       this.$bellContainer.className.includes("top-left") ||
+      this.$bellContainer.className.includes("top-center") ||
       this.$bellContainer.className.includes("top-right")
     )
       this.$bellContainer.style.top = "-75px";
     if (
       this.$bellContainer.className.includes("bottom-left") ||
-      this.$bellContainer.className.includes("bottom-right")
+      this.$bellContainer.className.includes("bottom-center") ||
+      this.$bellContainer.className.includes("bottom-right") 
     )
       this.$bellContainer.style.bottom = "-75px";
 
     setTimeout(() => {
       this.$bellContainer.remove();
-      if (this.expand && this.$bellNums === $bells) document.body.removeEventListener("mouseover", this.hover);
-      if (document.querySelectorAll(".bell_container").length === 0) {
-        document.body.removeEventListener("mouseover", this.hover);
+      if (document.querySelectorAll(`.b_c.${this.position}`).length === 0) {
+        this.$bellParent.remove();
         bellState.position = null
         bellState.timeScreen = null
         bellState.withDescription = false

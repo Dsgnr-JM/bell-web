@@ -1,0 +1,29 @@
+/* Theme gradient */
+
+.b_c.gradient{
+  border: none;
+}
+.b_c.gradient.info{
+  background: linear-gradient(60deg, #cde3fb, #fff 20%);
+  --b_t:rgb(10 10 10 / .7);
+  --b_svg:rgb(48 160 207);
+  --b_t:rgb(10 10 10);
+}
+.b_c.warning.gradient{
+  background: linear-gradient(60deg, #fbe1cd, #fff 20%);
+  --b_t:rgb(10 10 10 / .7);
+  --b_t:rgb(10 10 10);
+  --b_svg:rgb(162 87 0);
+}
+.b_c.error.gradient{
+  background: linear-gradient(60deg, #fbcdcd, #fff 20%);
+  --b_t:rgb(10 10 10 / .7);
+  --b_t:rgb(10 10 10);
+  --b_svg:rgb(162 0 0);
+}
+.b_c.success.gradient{
+  background: linear-gradient(60deg, #cdfbcf, #fff 20%);
+  --b_t:rgb(10 10 10 / .7);
+  --b_t:rgb(10 10 10);
+  --b_svg:rgb(0 162 91);
+}
